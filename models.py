@@ -12,6 +12,8 @@ class Usuario(db.Model):
     nome = db.Column(db.String(150), nullable = False)
     email = db.Column(db.String(100), nullable = False, unique = True)
     senha = db.Column(db.String(40), nullable = False)
+    token = db.Column(db.String(40))
+    data_acesso = db.Column(db.DateTime)
 
     def add(self):
         ''' Realiza a insercao do usuário no banco de dados '''
@@ -29,9 +31,10 @@ class Usuario(db.Model):
         return {
             'id': self.id, 
             'nome': self.nome, 
-            'email': self.email
+            'email': self.email,
+            'token': self.token,
+            'data_acesso': str(self.data_acesso)
         }
-
 
 
 class Item(db.Model):

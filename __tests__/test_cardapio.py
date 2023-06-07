@@ -14,7 +14,11 @@ from dotenv import load_dotenv
 load_dotenv()
 
 HOST = os.getenv('HOST')
+EMAIL = os.getenv('EMAIL')
+SENHA = os.getenv('SENHA')
+
 ID = None
+TOKEN = None
 
 class TestACardapio(unittest.TestCase):
 
@@ -24,7 +28,18 @@ class TestACardapio(unittest.TestCase):
         self._url = '/cardapio'
         self._host = HOST
     
+    @classmethod
+    def setUpClass(cls):
+        ''' Realiza a autenticacao'''
+        global TOKEN, EMAIL, SENHA
+        dados = {'email': EMAIL, 'senha': SENHA}
+
+        resp = Session().post(HOST + '/acesso_admin', data = {'dados': json.dumps(dados)}).json()
+        TOKEN = resp['token']
+
     def setUp(self) -> None:
+
+        self._c.headers.update({'X-Api-Key': TOKEN})
         self.imagem = open('./cafe.jpg', 'rb')
     
     def tearDown(self) -> None:
@@ -67,8 +82,6 @@ class TestACardapio(unittest.TestCase):
             self.assertIn('descricao', item)
             self.assertIn('thumb', item)
             self.assertIn('normal', item)
-        
-        print(result)
     
     def test_c_atualizar_item(self):
         ''' Realiza a atualização de um item passando o seu ID '''
@@ -101,7 +114,7 @@ class TestACardapio(unittest.TestCase):
         self.assertIsInstance(result, dict)
         #
         self.assertIn('sucesso', result)
-        print(result)
+
 
 if __name__ == '__main__':
     unittest.main()

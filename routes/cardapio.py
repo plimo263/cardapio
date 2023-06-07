@@ -2,9 +2,10 @@ import json
 import os
 from flask import Blueprint, render_template, request
 from extensions import db, path_dir_save_normal, path_dir_save_thumb, path_web_thumb, path_web_normal
-from models import Item, ImagemItem
+from models import Item, ImagemItem, Usuario
 from utils.validator import Validator, ValidatorString, ValidatorEnum
 from utils.imagens import Imagens
+from utils.authenticator import Autenticator
 
 cardapio = Blueprint('cardapio', __name__)
 
@@ -13,7 +14,8 @@ def ver_cardapio_view():
     return render_template('template_react.html')
 
 @cardapio.route('/cardapio', methods = ['POST', 'GET', 'PUT', 'DELETE'])
-def cardapio_rota():
+@Autenticator()
+def cardapio_rota(_):
     categories_accepts = ['Café', 'Sucos', 'Chá', 'Alcoólicos']
 
     if request.method == 'GET': # Retorno de itens do cardapio
@@ -90,13 +92,6 @@ def cardapio_rota():
         # Item existe vamos atualiza-lo
         upd_item = Item.query.filter_by(id=data['id']).first()
         upd_item.update(data['nome'], data['descricao'], data['categoria'])
-
-        # upd_item.nome = data['nome']
-        # upd_item.descricao = data['descricao']
-        # upd_item.categoria = data['categoria']
-
-        # db.session.add(upd_item)
-        # db.session.commit()
 
         return json.dumps(upd_item.to_dict())
     
