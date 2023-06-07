@@ -1,0 +1,39 @@
+site_name: Documentação do Desenvolvedor
+
+theme:
+  name: material
+  language: pt-BR
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: purple
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: purple
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            show_docstring_parameters: true
+            show_source: false
+            show_docstring_examples: true
+            separate_signature: true
+            show_signature_annotations: true
+          paths: ["../"]
+
+markdown_extensions:
+  - pymdownx.emoji
+  - pymdownx.tasklist
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.highlight
+  - pymdownx.superfences

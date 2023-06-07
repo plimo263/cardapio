@@ -35,7 +35,7 @@ class TestACardapio(unittest.TestCase):
         global ID
         item = {
             'nome': 'Café', 
-            'categoria': 'cafe', 
+            'categoria': 'Café', 
             'descricao': 'Expresso curto, tradicional: fraco, médio, forte!'
         }
         c = self._c.post(self._host + self._url, data = {'dados': json.dumps(item)}, files= {'arquivo': self.imagem})
@@ -55,7 +55,7 @@ class TestACardapio(unittest.TestCase):
     
     def test_b_listar_itens(self):
         ''' Realiza a listagem dos itens de uma determinada categoria  '''
-        c = self._c.get(self._host + self._url + '?categoria=cafe')
+        c = self._c.get(self._host + self._url + '?categoria=Café')
         self.assertEqual(c.status_code, 200)
         result = c.json()
         self.assertIsInstance(result, list)
@@ -67,11 +67,13 @@ class TestACardapio(unittest.TestCase):
             self.assertIn('descricao', item)
             self.assertIn('thumb', item)
             self.assertIn('normal', item)
+        
+        print(result)
     
     def test_c_atualizar_item(self):
         ''' Realiza a atualização de um item passando o seu ID '''
         global ID
-        item = {'id': ID, 'nome': 'Café claro', 'categoria': 'cafe', 'descricao': 'Expresso curto, tradicional: fraco, médio, forte!'}
+        item = {'id': ID, 'nome': 'Café claro', 'categoria': 'Sucos', 'descricao': 'Expresso curto, tradicional: fraco, médio, forte!'}
         c = self._c.put(self._host + self._url, data = {'dados': json.dumps(item)})
 
         self.assertEqual(c.status_code, 200)
@@ -85,6 +87,7 @@ class TestACardapio(unittest.TestCase):
         self.assertIn('descricao', result)
         self.assertIn('thumb', result)
         self.assertIn('normal', result)
+        
     
     def test_d_deletar_item(self):
         ''' Realiza a Remoção de um item '''
@@ -98,6 +101,7 @@ class TestACardapio(unittest.TestCase):
         self.assertIsInstance(result, dict)
         #
         self.assertIn('sucesso', result)
+        print(result)
 
 if __name__ == '__main__':
     unittest.main()

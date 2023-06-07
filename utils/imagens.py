@@ -8,8 +8,19 @@ from PIL import Image, ExifTags
 class Imagens:
 
     @staticmethod
-    def resize_image(filepath: str, size: tuple, new_file_path: str = None):
-        ''' Redimensiona a imagem para o tamanho passado pelo argumento size'''
+    def resize_image(filepath: str, size: tuple, new_file_path: str = None) -> None:
+        ''' Redimensiona a imagem para o tamanho passado pelo argumento size e opcinalmente pode 
+        salvar a imagem em outro caminho.
+        
+        Parameters:
+            filepath: Caminho onde esta a imagem a ser redimensionado, com a imagem inclusa no path
+            size: Uma tupla que irá determinar a nova altura/largura da imagem sem perder a proporção original
+            new_file_path: O novo caminho (ja com o nome da imagem) onde ela deve ser salva novamente, caso não informado a imagem original será substituida.
+        
+        Examples:
+           >>> Imagens.resize_image('/dados/backup/foto.png', (64,64), '/dados/backup/thumbnail/foto.png')
+        
+        '''
         Imagens.rotate_image(filepath, size, new_file_path)
 
     @staticmethod

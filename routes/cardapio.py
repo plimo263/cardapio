@@ -14,6 +14,8 @@ def ver_cardapio_view():
 
 @cardapio.route('/cardapio', methods = ['POST', 'GET', 'PUT', 'DELETE'])
 def cardapio_rota():
+    categories_accepts = ['Café', 'Sucos', 'Chá', 'Alcoólicos']
+
     if request.method == 'GET': # Retorno de itens do cardapio
         args = request.args
         if len(args) == 0 or not 'categoria' in args:
@@ -30,7 +32,7 @@ def cardapio_rota():
     list_validators = [
         ValidatorString('nome', min = 3, msg_error='Mínimo de 3 caracteres'),
         ValidatorString('descricao', msg_error='Campo obrigatório'),
-        ValidatorEnum('categoria', ['cafe', 'suco', 'cha', 'alcolico'], msg_error='O valor enviado não é aceito')
+        ValidatorEnum('categoria', categories_accepts, msg_error='O valor enviado não é aceito')
     ]
     requireds = ['nome', 'descricao', 'categoria'] # Requerimentos (campos obrigatorios)
     
