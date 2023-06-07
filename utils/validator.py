@@ -307,7 +307,7 @@ class Validator:
             self.__schema['properties'].update(validate_field.to_schema())
 
 
-    def is_valid(self, data: dict, format_checker = None) -> None:
+    def is_valid(self, data: dict, format_checker:any = None) -> None:
         ''' Verifica se o schema enviado é valido, caso necessário é possível incluir um format_checker 
         que pode ser usado para validar campos, por exemplo do tipo date.
         Caso algum campo não seja validado um **ValueError** é lançado pelo método.

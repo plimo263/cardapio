@@ -5,13 +5,16 @@ from models import Usuario
 
 class Autenticator:
     ''' Esta classe permite ao utilizador usa-la para autenticar usuarios com acesso as rotas.
-    Ela é um decorador e assim pode ser usada abaixo de .route para validar o usuario
-    Examples: 
-      @app.route('/')
-      @Autenticator()
-      def raiz(usuario):
+    Ela é um decorador e assim pode ser usada abaixo de .route para validar o usuario. 
+    A forma como você deve escrever este autenticado é entre o decorador @app e a funcao 
+    a ser executada pela rota. Ele irá verificar se o usuário esta autenticado e caso não 
+    esteja irá retornar um json com a mensagem de erro.
+
+      @app.route('/')\n
+      @Autenticator()\n
+      def raiz(usuario):\n
         ...
-    Caso precise pode usar o pagina_view que redirecionar o usuario caso o mesmo não esteja autenticado
+    
     '''
     def __init__(self, rota = None, pagina_view = False):
         self._rota = rota

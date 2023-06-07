@@ -1,0 +1,3 @@
+# Class Autenticator
+
+::: utils.authenticator

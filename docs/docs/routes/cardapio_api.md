@@ -3,6 +3,9 @@
 Esta ResfulAPI lida com a manutenção dos itens, como listagem, inserção, atualização e exclusão dos mesmos no sistema.
 Interagir com esta API necessita estar autenticado pois lida com áreas sensiveis da aplicação como inserção de dados.
 
+_Todas as rotas aqui necessitam do token você pode consegui-lo por [aqui](./acesso_admin.md). Lembre-se de passá-lo no Header
+junto ao **X-Api-Key**._
+
 ## /cardapio
 
 ### GET
@@ -18,8 +21,7 @@ import json
 
 URL = 'http://localhost:8080'
 s = Session()
-s.post(URL, data={'usuario':'', 'senha': ''}) # Autenticando
-
+s.headers.update({'X-Api-Key': 'TOKEN_DE_AUTENTICACAO'})
 
 # Realizando o envio
 s.get( URL + '/cardapio?categoria=Café')
@@ -57,7 +59,7 @@ import json
 
 URL = 'http://localhost:8080'
 s = Session()
-s.post(URL, data={'usuario':'', 'senha': ''}) # Autenticando
+s.headers.update({'X-Api-Key': 'TOKEN_DE_AUTENTICACAO'})
 
 obj = {
    'nome': 'Capuccino', 'categoria': 'Café', 'descricao': 'Expresso curto',
@@ -102,7 +104,7 @@ import json
 
 URL = 'http://localhost:8080'
 s = Session()
-s.post(URL, data={'usuario':'', 'senha': ''}) # Autenticando
+s.headers.update({'X-Api-Key': 'TOKEN_DE_AUTENTICACAO'})
 
 obj = {
     'id': 1,
@@ -145,7 +147,7 @@ import json
 
 URL = 'http://localhost:8080'
 s = Session()
-s.post(URL, data={'usuario':'', 'senha': ''}) # Autenticando
+s.headers.update({'X-Api-Key': 'TOKEN_DE_AUTENTICACAO'})
 
 obj = {
     'id': 1,
