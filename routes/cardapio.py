@@ -61,13 +61,11 @@ def cardapio_rota():
         
         # Cria o registro
         item_reg = Item(nome=data['nome'], descricao=data['descricao'], categoria=data['categoria'])
-        db.session.add(item_reg)
-        db.session.commit()
+        item_reg.add()
 
         # Agora cria a vinculacao da imagem no banco
         imagem_reg = ImagemItem(imagem=image_name, id_item=item_reg.id)
-        db.session.add(imagem_reg)
-        db.session.commit()
+        imagem_reg.add()
         #
         obj_item = item_reg.to_dict()
 
@@ -89,12 +87,14 @@ def cardapio_rota():
         
         # Item existe vamos atualiza-lo
         upd_item = Item.query.filter_by(id=data['id']).first()
-        upd_item.nome = data['nome']
-        upd_item.descricao = data['descricao']
-        upd_item.categoria = data['categoria']
+        upd_item.update(data['nome'], data['descricao'], data['categoria'])
 
-        db.session.add(upd_item)
-        db.session.commit()
+        # upd_item.nome = data['nome']
+        # upd_item.descricao = data['descricao']
+        # upd_item.categoria = data['categoria']
+
+        # db.session.add(upd_item)
+        # db.session.commit()
 
         return json.dumps(upd_item.to_dict())
     
@@ -112,7 +112,7 @@ def cardapio_rota():
         # Item existe vamos recuperar para exclui-lo
         item = Item.query.filter_by(id=data['id']).first()
 
-        # Exclua a imagem
+        # Exclua a imagem fisicamente
         to_filename_item = item.to_filename()
         try:
             os.remove(os.path.join(path_dir_save_thumb, to_filename_item))
@@ -120,13 +120,8 @@ def cardapio_rota():
         except FileNotFoundError:
             pass
 
-        # Exclui a imagem do banco
-        image_item = ImagemItem.query.filter_by(id_item = data['id']).first()
-        db.session.delete(image_item)
-        db.session.commit()
-
-        # Exclui o item
-        db.session.delete(item)
-        db.session.commit()
+        # Exclui o item e tudo relacionado a ele
+        item.delete()
+        item = None
 
         return json.dumps({'sucesso': 'Item excluido com sucesso.'})

@@ -1,5 +1,8 @@
 '''
-
+Descricao:
+  Referencia ao SQLAlchemy para ser usado por toda a aplicação, 
+  caminho para salvar as imagens e caminho para montar o acesso 
+  web das imagens
 '''
 import os
 from flask_sqlalchemy import SQLAlchemy
