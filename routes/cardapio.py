@@ -7,26 +7,41 @@ from utils.validator import Validator, ValidatorString, ValidatorEnum
 from utils.imagens import Imagens
 from utils.authenticator import Autenticator
 
+categories_accepts = [
+ ['FreeBreakfast', 'Café'],
+ ['Fastfood', 'Sucos'],
+ ['EmojiFoodBeverage', 'Chá'],
+ ['WineBar', 'Alcoólicos']
+]
+
 cardapio = Blueprint('cardapio', __name__)
 
 @cardapio.route('/', methods = ['GET'])
 def ver_cardapio_view():
     return render_template('template_react.html')
 
-@cardapio.route('/cardapio', methods = ['POST', 'GET', 'PUT', 'DELETE'])
+# Rota para recuperar os itens do cardapio
+@cardapio.route('/cardapio', methods = ['GET'])
+def cardapio_get():
+    
+    args = request.args
+    if len(args) == 0:
+        return render_template('template_react.html')
+    # Veja qual argumento foi enviado
+    if 'tipos' in args:
+        items = categories_accepts
+    elif 'categoria' in args:
+        if args['categoria'] == 'todas':
+            items = [ item.to_dict() for item in Item.query.all() ]
+        else:
+            # Realiza a consulta dos itens
+            items = [ item.to_dict() for item in Item.query.filter_by( categoria = args['categoria']) ]
+
+    return json.dumps(items)
+
+@cardapio.route('/cardapio', methods = ['POST', 'PUT', 'DELETE'])
 @Autenticator()
 def cardapio_rota(_):
-    categories_accepts = ['Café', 'Sucos', 'Chá', 'Alcoólicos']
-
-    if request.method == 'GET': # Retorno de itens do cardapio
-        args = request.args
-        if len(args) == 0 or not 'categoria' in args:
-            return json.dumps({'erro': 'Favor enviar um argumento valido'})
-        # Realiza a consulta dos itens
-        items = [ item.to_dict() for item in Item.query.filter_by( categoria = args['categoria']) ]
-
-        return json.dumps(items)
-    
     data = Validator.validate_json(request)
     if 'erro' in data: return json.dumps(data)
     
@@ -34,7 +49,7 @@ def cardapio_rota(_):
     list_validators = [
         ValidatorString('nome', min = 3, msg_error='Mínimo de 3 caracteres'),
         ValidatorString('descricao', msg_error='Campo obrigatório'),
-        ValidatorEnum('categoria', categories_accepts, msg_error='O valor enviado não é aceito')
+        ValidatorEnum('categoria', [ item[1] for item in categories_accepts], msg_error='O valor enviado não é aceito')
     ]
     requireds = ['nome', 'descricao', 'categoria'] # Requerimentos (campos obrigatorios)
     

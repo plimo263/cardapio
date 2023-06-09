@@ -3,7 +3,7 @@
 Esta ResfulAPI lida com a manutenção dos itens, como listagem, inserção, atualização e exclusão dos mesmos no sistema.
 Interagir com esta API necessita estar autenticado pois lida com áreas sensiveis da aplicação como inserção de dados.
 
-_Todas as rotas aqui necessitam do token você pode consegui-lo por [aqui](./acesso_admin.md). Lembre-se de passá-lo no Header
+_Todas as rotas aqui (com excessão de GET) necessitam do token você pode consegui-lo por [aqui](./acesso_admin.md). Lembre-se de passá-lo no Header
 junto ao **X-Api-Key**._
 
 ## /cardapio
@@ -13,6 +13,8 @@ junto ao **X-Api-Key**._
 Recupera itens baseado no parametro informado.
 
 - categoria: Retorna itens que atendam a esta categoria
+  - todas: Caso enviado retorna todas as categorias disponiveis.
+- tipos: Retorna os tipos de categorias disponiveis
 
 ```{.py3 title='Exemplo de envio'}
 
@@ -21,7 +23,6 @@ import json
 
 URL = 'http://localhost:8080'
 s = Session()
-s.headers.update({'X-Api-Key': 'TOKEN_DE_AUTENTICACAO'})
 
 # Realizando o envio
 s.get( URL + '/cardapio?categoria=Café')
@@ -38,6 +39,29 @@ s.get( URL + '/cardapio?categoria=Café')
   'thumb': 'static/imagens/pequeno/89318b7008da0bb9086ba55f7911681f9ade367b.jpg',
   'normal': 'static/imagens/medio/89318b7008da0bb9086ba55f7911681f9ade367b.jpg'
  }
+]
+```
+
+```{.py3 title='Exemplo de envio com tipos'}
+
+from requests import Session
+import json
+
+URL = 'http://localhost:8080'
+s = Session()
+
+# Realizando o envio
+s.get( URL + '/cardapio?tipos=true')
+
+```
+
+```{.py3 title='Retorno'}
+
+[
+ ['FreeBreakfast', 'Café'],
+ ['Fastfood', 'Sucos'],
+ ['EmojiFoodBeverage', 'Chá'],
+ ['WineBar', 'Alcoólicos']
 ]
 ```
 
