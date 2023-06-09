@@ -221,7 +221,7 @@
   
     <li class="md-nav__item">
       <a href="../.." class="md-nav__link">
-        Welcome to MkDocs
+        Cardapio
       </a>
     </li>
   
@@ -529,20 +529,21 @@
 <h1 id="cardapio">Cardapio</h1>
 <p>Esta ResfulAPI lida com a manutenção dos itens, como listagem, inserção, atualização e exclusão dos mesmos no sistema.
 Interagir com esta API necessita estar autenticado pois lida com áreas sensiveis da aplicação como inserção de dados.</p>
-<p><em>Todas as rotas aqui necessitam do token você pode consegui-lo por <a href="../acesso_admin/">aqui</a>. Lembre-se de passá-lo no Header
+<p><em>Todas as rotas aqui (com excessão de GET) necessitam do token você pode consegui-lo por <a href="../acesso_admin/">aqui</a>. Lembre-se de passá-lo no Header
 junto ao <strong>X-Api-Key</strong>.</em></p>
 <h2 id="cardapio_1">/cardapio</h2>
 <h3 id="get">GET</h3>
 <p>Recupera itens baseado no parametro informado.</p>
 <ul>
 <li>categoria: Retorna itens que atendam a esta categoria</li>
+<li>todas: Caso enviado retorna todas as categorias disponiveis.</li>
+<li>tipos: Retorna os tipos de categorias disponiveis</li>
 </ul>
 <div class="highlight"><span class="filename">Exemplo de envio</span><pre><span></span><code><span class="kn">from</span> <span class="nn">requests</span> <span class="kn">import</span> <span class="n">Session</span>
 <span class="kn">import</span> <span class="nn">json</span>
 
 <span class="n">URL</span> <span class="o">=</span> <span class="s1">&#39;http://localhost:8080&#39;</span>
 <span class="n">s</span> <span class="o">=</span> <span class="n">Session</span><span class="p">()</span>
-<span class="n">s</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;X-Api-Key&#39;</span><span class="p">:</span> <span class="s1">&#39;TOKEN_DE_AUTENTICACAO&#39;</span><span class="p">})</span>
 
 <span class="c1"># Realizando o envio</span>
 <span class="n">s</span><span class="o">.</span><span class="n">get</span><span class="p">(</span> <span class="n">URL</span> <span class="o">+</span> <span class="s1">&#39;/cardapio?categoria=Café&#39;</span><span class="p">)</span>
@@ -556,6 +557,22 @@ junto ao <strong>X-Api-Key</strong>.</em></p>
   <span class="s1">&#39;thumb&#39;</span><span class="p">:</span> <span class="s1">&#39;static/imagens/pequeno/89318b7008da0bb9086ba55f7911681f9ade367b.jpg&#39;</span><span class="p">,</span>
   <span class="s1">&#39;normal&#39;</span><span class="p">:</span> <span class="s1">&#39;static/imagens/medio/89318b7008da0bb9086ba55f7911681f9ade367b.jpg&#39;</span>
  <span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Exemplo de envio com tipos</span><pre><span></span><code><span class="kn">from</span> <span class="nn">requests</span> <span class="kn">import</span> <span class="n">Session</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">URL</span> <span class="o">=</span> <span class="s1">&#39;http://localhost:8080&#39;</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">Session</span><span class="p">()</span>
+
+<span class="c1"># Realizando o envio</span>
+<span class="n">s</span><span class="o">.</span><span class="n">get</span><span class="p">(</span> <span class="n">URL</span> <span class="o">+</span> <span class="s1">&#39;/cardapio?tipos=true&#39;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Retorno</span><pre><span></span><code><span class="p">[</span>
+ <span class="p">[</span><span class="s1">&#39;FreeBreakfast&#39;</span><span class="p">,</span> <span class="s1">&#39;Café&#39;</span><span class="p">],</span>
+ <span class="p">[</span><span class="s1">&#39;Fastfood&#39;</span><span class="p">,</span> <span class="s1">&#39;Sucos&#39;</span><span class="p">],</span>
+ <span class="p">[</span><span class="s1">&#39;EmojiFoodBeverage&#39;</span><span class="p">,</span> <span class="s1">&#39;Chá&#39;</span><span class="p">],</span>
+ <span class="p">[</span><span class="s1">&#39;WineBar&#39;</span><span class="p">,</span> <span class="s1">&#39;Alcoólicos&#39;</span><span class="p">]</span>
 <span class="p">]</span>
 </code></pre></div>
 <h3 id="post">POST</h3>
