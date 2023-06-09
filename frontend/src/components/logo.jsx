@@ -1,6 +1,7 @@
 import React from "react";
-import logoImg from "../images/logo.png";
-import logoImg2 from "../images/logo2.png";
+
+const logoImg = "/static/logo.png";
+const logoImg2 = "/static/logo2.png";
 
 function Logo({ isMini, isLogo2 }) {
   return (
