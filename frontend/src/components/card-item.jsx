@@ -16,7 +16,7 @@ function CardItem({ id, category, image, title, description }) {
         m: 1,
         height: !isMobile && 380,
         overflowY: "hidden",
-        width: isMobile ? "100%" : "320px",
+        width: isMobile ? "calc(100%-8px)" : "320px",
       }}
     >
       <CardHeader
