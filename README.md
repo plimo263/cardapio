@@ -4,6 +4,8 @@ Projeto de cardápio online feito em Flask (backend) e React (frontend). Que tal
 onde você possa controlar os itens a serem exibidos e com um site responsivo ? O objetivo deste projeto é este, unir a simplicidade
 junto da eficiência de se ter um cardápio pronto em questão de segundos.
 
+[DOCUMENTAÇÃO DA API](https://plimo263.github.io/cardapio/)
+
 ## Como posso começar ?
 
 Primeiro é necessário criar um arquivo _.env_ que vai conter detalhes da configuração do projeto. Os detalhes são a URI de conexão ao banco de dados e a secret_key usada pelo flask para proteger cookies e sessions. O conteúdo do arquivo deve se parece com o que segue abaixo.

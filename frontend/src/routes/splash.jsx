@@ -15,6 +15,10 @@ import { red } from "@mui/material/colors";
 const selectMenus = (state) => state?.menu?.menus;
 const selectItems = (state) => state?.items;
 //
+const SPLASH_STRINGS = {
+  titleCardapio: "Cardápio",
+};
+//
 const defaultOptions = {
   loop: 2,
   //repeat: 3,
@@ -64,7 +68,7 @@ function Splash() {
             sx={{ color: red[700], mt: 2, fontFamily: "Caveat" }}
             variant="h3"
           >
-            Cardápio
+            {SPLASH_STRINGS.titleCardapio}
           </Typography>
         </Fade>
         <Lottie
