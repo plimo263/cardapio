@@ -16,8 +16,8 @@ function CardItem({
   image,
   title,
   description,
-  isFav,
-  onClickFavorite,
+  // isFav,
+  // onClickFavorite,
 }) {
   const isMobile = useTheme()?.isMobile;
   return (
@@ -33,11 +33,11 @@ function CardItem({
       <CardHeader
         title={title}
         titleTypographyProps={{ fontFamily: "Caveat", fontSize: 28 }}
-        action={
-          <IconButton onClick={onClickFavorite} color="error">
-            <Icon icon={isFav ? "Favorite" : "FavoriteBorder"} />
-          </IconButton>
-        }
+        // action={
+        //   <IconButton onClick={onClickFavorite} color="error">
+        //     <Icon icon={isFav ? "Favorite" : "FavoriteBorder"} />
+        //   </IconButton>
+        // }
       />
       <CardMedia
         component="img"

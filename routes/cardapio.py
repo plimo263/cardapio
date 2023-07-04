@@ -1,11 +1,13 @@
 import json
 import os
+from uuid import UUID
 from flask import Blueprint, render_template, request
 from extensions import db, path_dir_save_normal, path_dir_save_thumb, path_web_thumb, path_web_normal
-from models import Item, ImagemItem, Usuario
-from utils.validator import Validator, ValidatorString, ValidatorEnum
+from models import Item, ImagemItem, Usuario, Favorito, Comentario
+from utils.validator import Validator, ValidatorString, ValidatorEnum, ValidatorRegex
 from utils.imagens import Imagens
 from utils.authenticator import Autenticator
+from utils.not_available import not_available
 
 categories_accepts = [
  ['FreeBreakfast', 'Café'],
@@ -39,12 +41,66 @@ def cardapio_get():
 
     return json.dumps(items)
 
+@cardapio.route('/cardapio', methods = ['PATCH'])
+@not_available
+def cardapio_comentario():
+    ''' Armazena os comentarios dos clientes quanto ao itens do cardapio.'''
+    data = Validator.validate_json(request)
+    if 'erro' in data: return json.dumps(data)
+
+    # Itens já cadastrados
+    id_items = [ item.id for item in  Item.query.all() ]
+    
+    # Lista de validadores 
+    list_validators = [
+        ValidatorEnum('id', id_items, msg_error='Item não encontrado'),
+        ValidatorRegex(
+            'id_identificador', 
+            regex = '^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$', 
+            msg_error='Necessario informar o identificador'
+        ),
+        ValidatorString('comentario', min = 0, msg_error='Campo comentário não enviado')
+    ]
+    requireds = ['id', 'id_identificador', 'comentario'] # Requerimentos (campos obrigatorios)
+    
+    v = Validator(list_validators, requireds)
+    try:
+        v.is_valid(data)
+    except ValueError as err:
+        return json.dumps({'erro': str(err)})
+    
+    # Verifica se ja esta favoritado
+    id_identificador = UUID(data['id_identificador']).bytes
+    fav = Favorito(id_item = data['id'], id_identificador = id_identificador )
+    if fav.is_fav():
+        fav.delete()
+    else:
+        # Tem algum comentario ?
+        if len(data['comentario']) > 0:
+            # Insere o comentario
+            comentario = Comentario(
+                id_item = data['id'], 
+                id_identificador = id_identificador, 
+                comentario = data['comentario']
+            )
+            comentario.add()
+        fav.add()
+
+    # Retorna o item
+    item = Item( id = data['id'] )
+
+    return json.dumps({
+        'sucesso': 'Curtida registrada com sucesso',
+        'data': item.to_dict()
+    })
+
+
 @cardapio.route('/cardapio', methods = ['POST', 'PUT', 'DELETE'])
 @Autenticator()
 def cardapio_rota(_):
     data = Validator.validate_json(request)
     if 'erro' in data: return json.dumps(data)
-    
+
     # Lista de validadores 
     list_validators = [
         ValidatorString('nome', min = 3, msg_error='Mínimo de 3 caracteres'),
@@ -76,7 +132,7 @@ def cardapio_rota(_):
 
         # Salva nos dois novos caminhos
         Imagens.resize_image(path_save, (1024,1024))
-        Imagens.resize_image(path_save, (200,200), path_save_thumb)
+        Imagens.resize_image(path_save, (320,320), path_save_thumb)
         
         # Cria o registro
         item_reg = Item(nome=data['nome'], descricao=data['descricao'], categoria=data['categoria'])

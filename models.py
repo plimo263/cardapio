@@ -55,6 +55,7 @@ class Item(db.Model):
         ''' Retorna os dados como um dicionario'''
         # Consulta a imagem de referencia
         imagem_reg = ImagemItem.query.filter_by(id_item = self.id).first()
+        total_de_favoritos = Favorito.total_of_fav(self.id)
         
         return {
             'id': self.id, 
@@ -63,6 +64,7 @@ class Item(db.Model):
             'descricao': self.descricao,
             'thumb' : os.path.join(path_web_thumb, imagem_reg.imagem ),
             'normal' : os.path.join(path_web_normal, imagem_reg.imagem ),
+            'total_favoritos': total_de_favoritos,
         }
     
     def add(self):
@@ -124,8 +126,32 @@ class Favorito(db.Model):
     
     def delete(self):
         ''' Realiza a remoção de um favoritado '''
-        db.session.delete(self)
+        item = Favorito.query.filter_by(id_item = self.id_item, id_identificador = self.id_identificador ).first()
+        db.session.delete(item)
         db.session.commit()
+        # Remove comentarios
+        comentario = Comentario.query.filter_by(id_item = self.id_item, id_identificador = self.id_identificador).first()
+        db.session.delete(comentario)
+        db.session.commit()
+    
+    def is_fav(self) -> bool:
+        ''' Verifica se o item ja esta favoritado.'''
+        items = Favorito.query.filter_by(id_item = self.id_item, id_identificador = self.id_identificador ).all()
+        if len(items) > 0:
+            return True
+        return False
+    
+    @staticmethod
+    def total_of_fav(id_item: int) -> int:
+        ''' Retorna o total de favoritos aplicados a um certo item 
+        Parameters:
+            id_item: Um inteiro que identifica o item e sua quantidade de favoritos.
+        Examples:
+            >>> Favorito.total_of_fav(1)
+            >>> 4
+        '''
+        items = Favorito.query.filter_by(id_item = id_item ).all()
+        return len(items)
     
     def to_dict(self):
         ''' Retorna uma representação em dicionario do favoritado '''
@@ -141,7 +167,7 @@ class Comentario(db.Model):
     id_item = db.Column(db.Integer, db.ForeignKey('item.id'), nullable = False, primary_key = True)
     id_identificador = db.Column(db.BINARY(16), nullable = False, primary_key = True)
     comentario = db.Column(db.Text, nullable = False)
-    data = db.Column(db.DateTime, default=func.now)
+    data = db.Column(db.DateTime, default=func.now())
 
     def add(self):
         ''' Realiza a inserção de um comentario '''

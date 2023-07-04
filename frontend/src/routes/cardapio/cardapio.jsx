@@ -38,12 +38,12 @@ function Cardapio() {
     [dispatch]
   );
   //
-  const onFavoriteItem = useCallback(
-    (id) => {
-      dispatch(itemFavoriteToggle(id));
-    },
-    [dispatch]
-  );
+  // const onFavoriteItem = useCallback(
+  //   (id) => {
+  //     dispatch(itemFavoriteToggle(id));
+  //   },
+  //   [dispatch]
+  // );
   //
   let itemsSelected = [];
   if (items && menus) {
@@ -71,8 +71,8 @@ function Cardapio() {
                     title={ele.nome}
                     description={ele.descricao}
                     image={ele.thumb}
-                    isFav={ele.favoritado}
-                    onClickFavorite={() => onFavoriteItem(ele.id)}
+                    //isFav={ele.favoritado}
+                    //onClickFavorite={() => onFavoriteItem(ele.id)}
                   />
                 </Box>
               </Grow>

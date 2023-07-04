@@ -55,7 +55,6 @@ class TestACardapio(unittest.TestCase):
         self.assertIn('descricao', resultado)
         self.assertIn('thumb', resultado)
         self.assertIn('normal', resultado)
-        self.assertIn('meu_favorito', resultado)
         self.assertIn('total_favoritos', resultado)
 
 
@@ -101,17 +100,18 @@ class TestACardapio(unittest.TestCase):
     def test_d_marcar_desmarcar_item_favorito(self):
         ''' Realiza a marcação/desmarcação do item como favorito informando seu id'''
         global ID
-        item = {'id': ID, 'id_identificador': '61edca5b-2cc1-43c4-a02e-022486965235', 'comentario': ''}
+        item = {'id': ID, 'id_identificador': '61edca5b-2cc1-43c4-a02e-022486965235', 'comentario': 'Produto muito bom.'}
         c = self._c.patch(self._host + self._url, data = {'dados': json.dumps(item)})
 
         self.assertEqual(c.status_code, 200)
         #
         result = c.json()
         self.assertIsInstance(result, dict)
+        self.assertIn('data', result)
+        self.assertIn('sucesso', result)
+        result = result['data']
         #
         self.validar_campos(result)
-        # Veja se o item foi marcado
-        self.assertTrue(result['meu_favorito'])
 
         # Outra chamada para desfavoritar item
         item = {'id': ID, 'id_identificador': '61edca5b-2cc1-43c4-a02e-022486965235', 'comentario': ''}
@@ -121,10 +121,11 @@ class TestACardapio(unittest.TestCase):
         #
         result = c.json()
         self.assertIsInstance(result, dict)
+        self.assertIn('data', result)
+        self.assertIn('sucesso', result)
+        result = result['data']
         #
         self.validar_campos(result)
-        # Veja se o item foi desmarcado como favorito
-        self.assertFalse(result['meu_favorito'])
 
     def test_e_deletar_item(self):
         ''' Realiza a Remoção de um item '''

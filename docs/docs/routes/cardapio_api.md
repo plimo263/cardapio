@@ -38,7 +38,6 @@ s.get( URL + '/cardapio?categoria=Café')
   'descricao': 'Expresso curto, tradicional: fraco, médio, forte!',
   'thumb': 'static/imagens/pequeno/89318b7008da0bb9086ba55f7911681f9ade367b.jpg',
   'normal': 'static/imagens/medio/89318b7008da0bb9086ba55f7911681f9ade367b.jpg',
-  'meu_favorito': false,
   'total_favoritos': 10,
  }
 ]
@@ -109,7 +108,6 @@ s.post(
     'descricao': 'Expresso curto',
     'thumb': 'static/imagens/pequeno/427b834de1d5dd430439b13fdf8631606cbe1d42.jpg',
     'normal': 'static/imagens/medio/427b834de1d5dd430439b13fdf8631606cbe1d42.jpg',
-    'meu_favorito': false,
     'total_favoritos': 0,
 }
 ```
@@ -157,7 +155,6 @@ s.put(
     'descricao': 'Expresso curto com leite',
     'thumb': 'static/imagens/pequeno/427b834de1d5dd430439b13fdf8631606cbe1d42.jpg',
     'normal': 'static/imagens/medio/427b834de1d5dd430439b13fdf8631606cbe1d42.jpg',
-    'meu_favorito': false,
     'total_favoritos': 0,
 }
 ```
@@ -203,7 +200,6 @@ s.patch(
     'descricao': 'Expresso curto com leite',
     'thumb': 'static/imagens/pequeno/427b834de1d5dd430439b13fdf8631606cbe1d42.jpg',
     'normal': 'static/imagens/medio/427b834de1d5dd430439b13fdf8631606cbe1d42.jpg',
-    'meu_favorito': false,
     'total_favoritos': 0,
 }
 ```
