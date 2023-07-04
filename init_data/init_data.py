@@ -22,24 +22,22 @@ PASSWD = os.getenv('SENHA')
 def init_data_items():
     ''' Cria os itens iniciais do cardapio no sistema. Usado para uma base teste'''
     imagens = [ 
-        './1.jpg', './2.jpg', './3.jpg', 
-        './4.jpg', './5.jpg', './6.jpg',
-        './7.jpg', './8.jpg', './9.jpg', 
-        './10.jpg', './11.jpg',
+        './1.jpeg', './2.jpeg', './3.jpeg', 
+        './4.jpeg', './5.jpeg', './6.jpeg',
+        './7.jpeg', './8.jpeg', './9.jpeg', './10.jpeg',
     ]
 
     lista_dados = [
-        {'nome': 'Café Mirante do Mangabeiras', 'categoria': 'Café', 'descricao': 'Expresso:\nExpresso curto, tradicional: fraco, médio, forte'},
-        {'nome': 'Café Praça do PAPA', 'categoria': 'Café', 'descricao': 'Cappuccino\nExpresso, leite vaporizado, chocolate em pó 50%% e calda de caramelo.'},
-        {'nome': 'Café Praça da LIBERDADE', 'categoria': 'Café', 'descricao': 'Cappuccino com canela.\nExpresso leite vaporizado, chocolat em po 50%. canela em pó e clda de caramelo'},
-        {'nome': 'Café Mercado Central', 'categoria': 'Café', 'descricao': 'Mocaccino\nExpresso leite vaporizdo, calda de chocolate ou caramelo'},
-        {'nome': 'Café Guanabara', 'categoria': 'Café', 'descricao': 'Chocolate quente\nLeite vaporizado, chocolate em po 50%% e calda de chocolate'},
-        {'nome': 'Café Mineirão', 'categoria': 'Café', 'descricao': 'Latte macchiato\n Leite vaporizado e expresso.'},
-        {'nome': 'Suco de laranja', 'categoria': 'Sucos', 'descricao': ''},
-        {'nome': 'Suco de Uva', 'categoria': 'Sucos', 'descricao': ''},
+        {'nome': 'Café Mirante do Mangabeiras', 'categoria': 'Café', 'descricao': 'EXPRESSO CURTO (1, 2 OU 3 GRÃOS)'},
+        {'nome': 'Café Praça do PAPA', 'categoria': 'Café', 'descricao': 'CAPPUCCINO (EXPRESSO CURTO 2 GRÃOS, LEITE VAPORIZADO COM CHOCOLATE EM PÓ 50% CACAU E CALDA DE CARAMELO).'},
+        {'nome': 'Café Praça da LIBERDADE', 'categoria': 'Café', 'descricao': 'CAPPUCCINO COM CANELA (EXPRESSO CURTO 2 GRÃOS, LEITE VAPORIZADO COM CHOCOLATE EM PÓ 50% CACAU, CANELA E CALDA DE CARAMELO)'},
+        {'nome': 'Café Mercado Central', 'categoria': 'Café', 'descricao': 'MOCACCINO (EXPRESSO CURTO 2 GRÃOS, LEITE VAPORIZADO E CALDA DE CHOCOLATE OU CARAMELO)'},
+        {'nome': 'Café Guanabara', 'categoria': 'Café', 'descricao': 'CHOCOLATE QUENTE (LEITE VAPORIZADO, CHOCOLATE EM PÓ 50% CACAU E CALDA DE CHOCOLATE)'},
+        {'nome': 'Café Mineirão', 'categoria': 'Café', 'descricao': 'LATTE MACCHIATO (EXPRESSO CURTO 2 GRÃO E LEITE VAPORIZADO).'},
         {'nome': 'Chá de camomila', 'categoria': 'Chá', 'descricao': ''},
         {'nome': 'Chá Matte', 'categoria': 'Chá', 'descricao': ''},
         {'nome': 'Licor', 'categoria': 'Alcoólicos', 'descricao': ''},
+        {'nome': 'Sucos', 'categoria': 'Sucos', 'descricao': 'Sabores variados, consultar loja'},
     ]
 
     # Recolhe o token para inserir os dados

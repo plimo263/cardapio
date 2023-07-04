@@ -44,6 +44,20 @@ class TestACardapio(unittest.TestCase):
     
     def tearDown(self) -> None:
         self.imagem.close()
+    
+    def validar_campos(self, resultado):
+        ''' Realiza a validação dos campos em comumn no retorno de um item'''
+        self.assertIsInstance(resultado, dict)
+        #
+        self.assertIn('id', resultado)
+        self.assertIn('nome', resultado)
+        self.assertIn('categoria', resultado)
+        self.assertIn('descricao', resultado)
+        self.assertIn('thumb', resultado)
+        self.assertIn('normal', resultado)
+        self.assertIn('meu_favorito', resultado)
+        self.assertIn('total_favoritos', resultado)
+
 
     def test_a_adicionar_item(self):
         ''' Teste para inserção de um novo item '''
@@ -60,12 +74,7 @@ class TestACardapio(unittest.TestCase):
         result = c.json()
         self.assertIsInstance(result, dict)
         #
-        self.assertIn('id', result)
-        self.assertIn('nome', result)
-        self.assertIn('categoria', result)
-        self.assertIn('descricao', result)
-        self.assertIn('thumb', result)
-        self.assertIn('normal', result)
+        self.validar_campos(result)
         ID = result['id']
     
     def test_b_listar_itens(self):
@@ -76,12 +85,7 @@ class TestACardapio(unittest.TestCase):
         self.assertIsInstance(result, list)
         #
         for item in result:
-            self.assertIn('id', item)
-            self.assertIn('nome', item)
-            self.assertIn('categoria', item)
-            self.assertIn('descricao', item)
-            self.assertIn('thumb', item)
-            self.assertIn('normal', item)
+            self.validar_campos(item)
     
     def test_c_atualizar_item(self):
         ''' Realiza a atualização de um item passando o seu ID '''
@@ -92,17 +96,37 @@ class TestACardapio(unittest.TestCase):
         self.assertEqual(c.status_code, 200)
         #
         result = c.json()
+        self.validar_campos(result)
+    
+    def test_d_marcar_desmarcar_item_favorito(self):
+        ''' Realiza a marcação/desmarcação do item como favorito informando seu id'''
+        global ID
+        item = {'id': ID, 'id_identificador': '61edca5b-2cc1-43c4-a02e-022486965235', 'comentario': ''}
+        c = self._c.patch(self._host + self._url, data = {'dados': json.dumps(item)})
+
+        self.assertEqual(c.status_code, 200)
+        #
+        result = c.json()
         self.assertIsInstance(result, dict)
         #
-        self.assertIn('id', result)
-        self.assertIn('nome', result)
-        self.assertIn('categoria', item)
-        self.assertIn('descricao', result)
-        self.assertIn('thumb', result)
-        self.assertIn('normal', result)
-        
-    
-    def test_d_deletar_item(self):
+        self.validar_campos(result)
+        # Veja se o item foi marcado
+        self.assertTrue(result['meu_favorito'])
+
+        # Outra chamada para desfavoritar item
+        item = {'id': ID, 'id_identificador': '61edca5b-2cc1-43c4-a02e-022486965235', 'comentario': ''}
+        c = self._c.patch(self._host + self._url, data = {'dados': json.dumps(item)})
+
+        self.assertEqual(c.status_code, 200)
+        #
+        result = c.json()
+        self.assertIsInstance(result, dict)
+        #
+        self.validar_campos(result)
+        # Veja se o item foi desmarcado como favorito
+        self.assertFalse(result['meu_favorito'])
+
+    def test_e_deletar_item(self):
         ''' Realiza a Remoção de um item '''
         global ID
         item = {'id': ID}

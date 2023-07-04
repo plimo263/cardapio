@@ -37,7 +37,9 @@ s.get( URL + '/cardapio?categoria=Café')
   'categoria': 'Café',
   'descricao': 'Expresso curto, tradicional: fraco, médio, forte!',
   'thumb': 'static/imagens/pequeno/89318b7008da0bb9086ba55f7911681f9ade367b.jpg',
-  'normal': 'static/imagens/medio/89318b7008da0bb9086ba55f7911681f9ade367b.jpg'
+  'normal': 'static/imagens/medio/89318b7008da0bb9086ba55f7911681f9ade367b.jpg',
+  'meu_favorito': false,
+  'total_favoritos': 10,
  }
 ]
 ```
@@ -106,7 +108,9 @@ s.post(
     'categoria': 'Café',
     'descricao': 'Expresso curto',
     'thumb': 'static/imagens/pequeno/427b834de1d5dd430439b13fdf8631606cbe1d42.jpg',
-    'normal': 'static/imagens/medio/427b834de1d5dd430439b13fdf8631606cbe1d42.jpg'
+    'normal': 'static/imagens/medio/427b834de1d5dd430439b13fdf8631606cbe1d42.jpg',
+    'meu_favorito': false,
+    'total_favoritos': 0,
 }
 ```
 
@@ -152,7 +156,55 @@ s.put(
     'categoria': 'Sucos',
     'descricao': 'Expresso curto com leite',
     'thumb': 'static/imagens/pequeno/427b834de1d5dd430439b13fdf8631606cbe1d42.jpg',
-    'normal': 'static/imagens/medio/427b834de1d5dd430439b13fdf8631606cbe1d42.jpg'
+    'normal': 'static/imagens/medio/427b834de1d5dd430439b13fdf8631606cbe1d42.jpg',
+    'meu_favorito': false,
+    'total_favoritos': 0,
+}
+```
+
+### PATCH
+
+Realiza a marcação/desmarcação de um item como favorito, é possível enviar um comentario sobre o item.
+
+| NOME             | DESCRICAO                                                                                                     | TIPO            | VALOR DE EXEMPLO                       |
+| ---------------- | ------------------------------------------------------------------------------------------------------------- | --------------- | -------------------------------------- |
+| id               | O identificador do item a ser favoritado.                                                                     | Integer         | 1                                      |
+| id_identificador | Um identificador unico para o cliente. Isto irá permitir que o cliente marque/desmarque o item como favorito. | String (uuidV4) | '68aeea48-add6-43c1-a4f9-1cbf40fc7344' |
+| comentario       | O comentário sobre o item, pode ser enviado e/ou não, mas deve seguir como string.                            | String          | 'Muito bom.'                           |
+
+```{.py3 title='Exemplo de envio'}
+
+from requests import Session
+import json
+
+URL = 'http://localhost:8080'
+s = Session()
+s.headers.update({'X-Api-Key': 'TOKEN_DE_AUTENTICACAO'})
+
+obj = {
+    'id': 1,
+   'id_identificador': '68aeea48-add6-43c1-a4f9-1cbf40fc7344',
+   'comentario': 'Muito bom, parabéns',
+}
+
+# Realizando o envio
+s.patch(
+    URL + '/cardapio',
+    data={'dados': json.dumps(obj) },
+)
+
+```
+
+```{.py3 title='Retorno'}
+{
+    'id': 1,
+    'nome': 'Capuccino',
+    'categoria': 'Sucos',
+    'descricao': 'Expresso curto com leite',
+    'thumb': 'static/imagens/pequeno/427b834de1d5dd430439b13fdf8631606cbe1d42.jpg',
+    'normal': 'static/imagens/medio/427b834de1d5dd430439b13fdf8631606cbe1d42.jpg',
+    'meu_favorito': false,
+    'total_favoritos': 0,
 }
 ```
 

@@ -7,6 +7,7 @@ import { menuSelected } from "../../redux/actions/menu-actions";
 import { AnimationNoData, CardItem } from "../../components";
 import Splash from "../splash";
 import { useHistory } from "react-router-dom";
+import { itemFavoriteToggle } from "../../redux/actions/items-actions";
 
 const selectMenus = (state) => state?.menu?.menus;
 const selectMenuSelected = (state) => state?.menu?.selectMenu;
@@ -37,6 +38,13 @@ function Cardapio() {
     [dispatch]
   );
   //
+  const onFavoriteItem = useCallback(
+    (id) => {
+      dispatch(itemFavoriteToggle(id));
+    },
+    [dispatch]
+  );
+  //
   let itemsSelected = [];
   if (items && menus) {
     const menuName = menus?.length > 0 ? menus[selectedMenu][1] : "";
@@ -63,6 +71,8 @@ function Cardapio() {
                     title={ele.nome}
                     description={ele.descricao}
                     image={ele.thumb}
+                    isFav={ele.favoritado}
+                    onClickFavorite={() => onFavoriteItem(ele.id)}
                   />
                 </Box>
               </Grow>

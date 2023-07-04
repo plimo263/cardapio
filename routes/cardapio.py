@@ -76,7 +76,7 @@ def cardapio_rota(_):
 
         # Salva nos dois novos caminhos
         Imagens.resize_image(path_save, (1024,1024))
-        Imagens.resize_image(path_save, (320,320), path_save_thumb)
+        Imagens.resize_image(path_save, (200,200), path_save_thumb)
         
         # Cria o registro
         item_reg = Item(nome=data['nome'], descricao=data['descricao'], categoria=data['categoria'])
