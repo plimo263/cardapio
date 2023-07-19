@@ -524,13 +524,9 @@ para se obter o token de acesso.</p>
 <span class="n">obj</span> <span class="o">=</span> <span class="p">{</span>
    <span class="s1">&#39;email&#39;</span><span class="p">:</span> <span class="s1">&#39;beltrano@example.com&#39;</span><span class="p">,</span> <span class="s1">&#39;senha&#39;</span><span class="p">:</span> <span class="s1">&#39;minha_super_senha&#39;</span>
 <span class="p">}</span>
-<span class="n">arquivo</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;imagem.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;rb)</span>
 
 <span class="c1"># Realizando o envio</span>
-<span class="n">s</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
-    <span class="n">URL</span> <span class="o">+</span> <span class="s1">&#39;/acesso_admin&#39;</span><span class="p">,</span>
-    <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;dados&#39;</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="p">}</span>
-<span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">post</span><span class="p">(</span> <span class="n">URL</span> <span class="o">+</span> <span class="s1">&#39;/acesso_admin&#39;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">obj</span> <span class="p">)</span>
 </code></pre></div>
 <div class="highlight"><span class="filename">Retorno</span><pre><span></span><code><span class="p">{</span>
     <span class="s1">&#39;token&#39;</span><span class="p">:</span> <span class="s1">&#39;dfadc855249b015fd2bb015c0b099b2189c58748&#39;</span>

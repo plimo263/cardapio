@@ -312,15 +312,35 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#cardapio_1" class="md-nav__link">
-    /cardapio
+  <a href="#cardapiotipos" class="md-nav__link">
+    /cardapio/tipos
   </a>
   
-    <nav class="md-nav" aria-label="/cardapio">
+    <nav class="md-nav" aria-label="/cardapio/tipos">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#get" class="md-nav__link">
+    GET
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cardapioitem" class="md-nav__link">
+    /cardapio/item
+  </a>
+  
+    <nav class="md-nav" aria-label="/cardapio/item">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_1" class="md-nav__link">
     GET
   </a>
   
@@ -332,6 +352,19 @@
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cardapioitemitem_id" class="md-nav__link">
+    /cardapio/item/&lt;item_id&gt;
+  </a>
+  
+    <nav class="md-nav" aria-label="/cardapio/item/<item_id>">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#put" class="md-nav__link">
@@ -350,6 +383,46 @@
           <li class="md-nav__item">
   <a href="#delete" class="md-nav__link">
     DELETE
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cardapiocomentario" class="md-nav__link">
+    /cardapio/comentario
+  </a>
+  
+    <nav class="md-nav" aria-label="/cardapio/comentario">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#post_1" class="md-nav__link">
+    POST
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cardapiofavorito" class="md-nav__link">
+    /cardapio/favorito
+  </a>
+  
+    <nav class="md-nav" aria-label="/cardapio/favorito">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#patch_1" class="md-nav__link">
+    PATCH
   </a>
   
 </li>
@@ -478,15 +551,35 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#cardapio_1" class="md-nav__link">
-    /cardapio
+  <a href="#cardapiotipos" class="md-nav__link">
+    /cardapio/tipos
   </a>
   
-    <nav class="md-nav" aria-label="/cardapio">
+    <nav class="md-nav" aria-label="/cardapio/tipos">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#get" class="md-nav__link">
+    GET
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cardapioitem" class="md-nav__link">
+    /cardapio/item
+  </a>
+  
+    <nav class="md-nav" aria-label="/cardapio/item">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_1" class="md-nav__link">
     GET
   </a>
   
@@ -498,6 +591,19 @@
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cardapioitemitem_id" class="md-nav__link">
+    /cardapio/item/&lt;item_id&gt;
+  </a>
+  
+    <nav class="md-nav" aria-label="/cardapio/item/<item_id>">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#put" class="md-nav__link">
@@ -525,6 +631,46 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#cardapiocomentario" class="md-nav__link">
+    /cardapio/comentario
+  </a>
+  
+    <nav class="md-nav" aria-label="/cardapio/comentario">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#post_1" class="md-nav__link">
+    POST
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cardapiofavorito" class="md-nav__link">
+    /cardapio/favorito
+  </a>
+  
+    <nav class="md-nav" aria-label="/cardapio/favorito">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#patch_1" class="md-nav__link">
+    PATCH
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -543,16 +689,11 @@
 <h1 id="cardapio">Cardapio</h1>
 <p>Esta ResfulAPI lida com a manutenção dos itens, como listagem, inserção, atualização e exclusão dos mesmos no sistema.
 Interagir com esta API necessita estar autenticado pois lida com áreas sensiveis da aplicação como inserção de dados.</p>
-<p><em>Todas as rotas aqui (com excessão de GET) necessitam do token você pode consegui-lo por <a href="../acesso_admin/">aqui</a>. Lembre-se de passá-lo no Header
+<p><em>A maioria das rotas aqui necessitam do token, você pode consegui-lo por <a href="../acesso_admin/">aqui</a>. Lembre-se de passá-lo no Header
 junto ao <strong>X-Api-Key</strong>.</em></p>
-<h2 id="cardapio_1">/cardapio</h2>
+<h2 id="cardapiotipos">/cardapio/tipos</h2>
 <h3 id="get">GET</h3>
-<p>Recupera itens baseado no parametro informado.</p>
-<ul>
-<li>categoria: Retorna itens que atendam a esta categoria</li>
-<li>todas: Caso enviado retorna todas as categorias disponiveis.</li>
-<li>tipos: Retorna os tipos de categorias disponiveis</li>
-</ul>
+<p>Recupera todos os tipos de categorias disponíveis no sistema.</p>
 <div class="highlight"><span class="filename">Exemplo de envio</span><pre><span></span><code><span class="kn">from</span> <span class="nn">requests</span> <span class="kn">import</span> <span class="n">Session</span>
 <span class="kn">import</span> <span class="nn">json</span>
 
@@ -560,38 +701,55 @@ junto ao <strong>X-Api-Key</strong>.</em></p>
 <span class="n">s</span> <span class="o">=</span> <span class="n">Session</span><span class="p">()</span>
 
 <span class="c1"># Realizando o envio</span>
-<span class="n">s</span><span class="o">.</span><span class="n">get</span><span class="p">(</span> <span class="n">URL</span> <span class="o">+</span> <span class="s1">&#39;/cardapio?categoria=Café&#39;</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">get</span><span class="p">(</span> <span class="n">URL</span> <span class="o">+</span> <span class="s1">&#39;/cardapio/tipos&#39;</span><span class="p">)</span>
 </code></pre></div>
 <div class="highlight"><span class="filename">Retorno</span><pre><span></span><code><span class="p">[</span>
- <span class="p">{</span>
-  <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="s1">&#39;nome&#39;</span><span class="p">:</span> <span class="s1">&#39;Café&#39;</span><span class="p">,</span>
-  <span class="s1">&#39;categoria&#39;</span><span class="p">:</span> <span class="s1">&#39;Café&#39;</span><span class="p">,</span>
-  <span class="s1">&#39;descricao&#39;</span><span class="p">:</span> <span class="s1">&#39;Expresso curto, tradicional: fraco, médio, forte!&#39;</span><span class="p">,</span>
-  <span class="s1">&#39;thumb&#39;</span><span class="p">:</span> <span class="s1">&#39;static/imagens/pequeno/89318b7008da0bb9086ba55f7911681f9ade367b.jpg&#39;</span><span class="p">,</span>
-  <span class="s1">&#39;normal&#39;</span><span class="p">:</span> <span class="s1">&#39;static/imagens/medio/89318b7008da0bb9086ba55f7911681f9ade367b.jpg&#39;</span><span class="p">,</span>
-  <span class="s1">&#39;total_favoritos&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
- <span class="p">}</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;descricao&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Café&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;icone&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;FreeBreakfast&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;descricao&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sucos&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;icone&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Fastfood&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;descricao&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Chá&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;icone&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EmojiFoodBeverage&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;descricao&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Alcoólicos&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;icone&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;WineBar&quot;</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">]</span>
 </code></pre></div>
-<div class="highlight"><span class="filename">Exemplo de envio com tipos</span><pre><span></span><code><span class="kn">from</span> <span class="nn">requests</span> <span class="kn">import</span> <span class="n">Session</span>
+<h2 id="cardapioitem">/cardapio/item</h2>
+<p>Realiza interações com os itens do cardápio.</p>
+<h3 id="get_1">GET</h3>
+<p>Recupera todos os itens do cardapio, indiferente da sua categoria</p>
+<div class="highlight"><span class="filename">Exemplo de envio</span><pre><span></span><code><span class="kn">from</span> <span class="nn">requests</span> <span class="kn">import</span> <span class="n">Session</span>
 <span class="kn">import</span> <span class="nn">json</span>
 
 <span class="n">URL</span> <span class="o">=</span> <span class="s1">&#39;http://localhost:8080&#39;</span>
 <span class="n">s</span> <span class="o">=</span> <span class="n">Session</span><span class="p">()</span>
 
 <span class="c1"># Realizando o envio</span>
-<span class="n">s</span><span class="o">.</span><span class="n">get</span><span class="p">(</span> <span class="n">URL</span> <span class="o">+</span> <span class="s1">&#39;/cardapio?tipos=true&#39;</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">get</span><span class="p">(</span> <span class="n">URL</span> <span class="o">+</span> <span class="s1">&#39;/cardapio/item&#39;</span><span class="p">)</span>
 </code></pre></div>
 <div class="highlight"><span class="filename">Retorno</span><pre><span></span><code><span class="p">[</span>
- <span class="p">[</span><span class="s1">&#39;FreeBreakfast&#39;</span><span class="p">,</span> <span class="s1">&#39;Café&#39;</span><span class="p">],</span>
- <span class="p">[</span><span class="s1">&#39;Fastfood&#39;</span><span class="p">,</span> <span class="s1">&#39;Sucos&#39;</span><span class="p">],</span>
- <span class="p">[</span><span class="s1">&#39;EmojiFoodBeverage&#39;</span><span class="p">,</span> <span class="s1">&#39;Chá&#39;</span><span class="p">],</span>
- <span class="p">[</span><span class="s1">&#39;WineBar&#39;</span><span class="p">,</span> <span class="s1">&#39;Alcoólicos&#39;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;categoria&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Café&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;descricao&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Este café é das Arábias, muito bom você vai gostar&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;meu_favorito&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;nome&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Café das arábias&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;normal&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;static/imagens/medio/55caf098c8969f84ca8b38987d7d2d96c94a754f.jpeg&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;thumb&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;static/imagens/pequeno/55caf098c8969f84ca8b38987d7d2d96c94a754f.jpeg&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;total_favoritos&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">]</span>
 </code></pre></div>
 <h3 id="post">POST</h3>
-<p>Cria um novo item no cardapio</p>
+<p>Cria um novo item no cardapio, esta API necessita de um token de autenticação.</p>
 <table>
 <thead>
 <tr>
@@ -620,12 +778,6 @@ junto ao <strong>X-Api-Key</strong>.</em></p>
 <td>String</td>
 <td>'Expresso curto'</td>
 </tr>
-<tr>
-<td>arquivo</td>
-<td>Este é um campo no body onde tem a indicação de um arquivo a ser a representação da imagem do item.</td>
-<td>File</td>
-<td>File('imagem.jpg')</td>
-</tr>
 </tbody>
 </table>
 <div class="highlight"><span class="filename">Exemplo de envio</span><pre><span></span><code><span class="kn">from</span> <span class="nn">requests</span> <span class="kn">import</span> <span class="n">Session</span>
@@ -636,29 +788,27 @@ junto ao <strong>X-Api-Key</strong>.</em></p>
 <span class="n">s</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;X-Api-Key&#39;</span><span class="p">:</span> <span class="s1">&#39;TOKEN_DE_AUTENTICACAO&#39;</span><span class="p">})</span>
 
 <span class="n">obj</span> <span class="o">=</span> <span class="p">{</span>
-   <span class="s1">&#39;nome&#39;</span><span class="p">:</span> <span class="s1">&#39;Capuccino&#39;</span><span class="p">,</span> <span class="s1">&#39;categoria&#39;</span><span class="p">:</span> <span class="s1">&#39;Café&#39;</span><span class="p">,</span> <span class="s1">&#39;descricao&#39;</span><span class="p">:</span> <span class="s1">&#39;Expresso curto&#39;</span><span class="p">,</span>
+    <span class="s2">&quot;categoria&quot;</span><span class="p">:</span> <span class="s2">&quot;Café&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;nome&quot;</span><span class="p">:</span> <span class="s2">&quot;Café das arábias&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;descricao&quot;</span><span class="p">:</span> <span class="s2">&quot;Este café é das Arábias, muito bom você vai gostar&quot;</span>
 <span class="p">}</span>
-<span class="n">arquivo</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;imagem.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;rb)</span>
 
 <span class="c1"># Realizando o envio</span>
-<span class="n">s</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
-    <span class="n">URL</span> <span class="o">+</span> <span class="s1">&#39;/cardapio&#39;</span><span class="p">,</span>
-    <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;dados&#39;</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="p">},</span>
-    <span class="n">file</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;arquivo&#39;</span><span class="p">:</span> <span class="n">arquivo</span> <span class="p">}</span>
-<span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">post</span><span class="p">(</span> <span class="n">URL</span> <span class="o">+</span> <span class="s1">&#39;/cardapio/item&#39;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">obj</span> <span class="p">)</span>
 </code></pre></div>
 <div class="highlight"><span class="filename">Retorno</span><pre><span></span><code><span class="p">{</span>
-    <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="s1">&#39;nome&#39;</span><span class="p">:</span> <span class="s1">&#39;Capuccino&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;categoria&#39;</span><span class="p">:</span> <span class="s1">&#39;Café&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;descricao&#39;</span><span class="p">:</span> <span class="s1">&#39;Expresso curto&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;thumb&#39;</span><span class="p">:</span> <span class="s1">&#39;static/imagens/pequeno/427b834de1d5dd430439b13fdf8631606cbe1d42.jpg&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;normal&#39;</span><span class="p">:</span> <span class="s1">&#39;static/imagens/medio/427b834de1d5dd430439b13fdf8631606cbe1d42.jpg&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;total_favoritos&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;categoria&quot;</span><span class="p">:</span> <span class="s2">&quot;Café&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;descricao&quot;</span><span class="p">:</span> <span class="s2">&quot;Este café é das Arábias, muito bom você vai gostar&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;nome&quot;</span><span class="p">:</span> <span class="s2">&quot;Café das arábias&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;normal&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;thumb&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;total_favoritos&quot;</span><span class="p">:</span> <span class="mi">0</span>
 <span class="p">}</span>
 </code></pre></div>
+<h2 id="cardapioitemitem_id">/cardapio/item/&lt;item_id&gt;</h2>
 <h3 id="put">PUT</h3>
-<p>Realiza a atualização de um item, descrição nome e categoria são alterados neste envio.</p>
+<p>Realiza a atualização de um item, descrição nome e categoria são alterados neste envio, necessita de um token de usuário.</p>
 <table>
 <thead>
 <tr>
@@ -669,12 +819,6 @@ junto ao <strong>X-Api-Key</strong>.</em></p>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>id</td>
-<td>O identificador do item a ser alterado.</td>
-<td>Integer</td>
-<td>1</td>
-</tr>
 <tr>
 <td>nome</td>
 <td>Novo nome do item a ser atualizado</td>
@@ -703,30 +847,71 @@ junto ao <strong>X-Api-Key</strong>.</em></p>
 <span class="n">s</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;X-Api-Key&#39;</span><span class="p">:</span> <span class="s1">&#39;TOKEN_DE_AUTENTICACAO&#39;</span><span class="p">})</span>
 
 <span class="n">obj</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-   <span class="s1">&#39;nome&#39;</span><span class="p">:</span> <span class="s1">&#39;Capuccino&#39;</span><span class="p">,</span>
-   <span class="s1">&#39;categoria&#39;</span><span class="p">:</span> <span class="s1">&#39;Sucos&#39;</span><span class="p">,</span>
-   <span class="s1">&#39;descricao&#39;</span><span class="p">:</span> <span class="s1">&#39;Expresso curto com leite&#39;</span><span class="p">,</span>
+    <span class="s2">&quot;categoria&quot;</span><span class="p">:</span> <span class="s2">&quot;Café&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;nome&quot;</span><span class="p">:</span> <span class="s2">&quot;Café das arábias loucas&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;descricao&quot;</span><span class="p">:</span> <span class="s2">&quot;Este café é das Arábias, muito bom você vai gostar&quot;</span>
 <span class="p">}</span>
 
 <span class="c1"># Realizando o envio</span>
-<span class="n">s</span><span class="o">.</span><span class="n">put</span><span class="p">(</span>
-    <span class="n">URL</span> <span class="o">+</span> <span class="s1">&#39;/cardapio&#39;</span><span class="p">,</span>
-    <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;dados&#39;</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="p">},</span>
-<span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">put</span><span class="p">(</span> <span class="n">URL</span> <span class="o">+</span> <span class="s1">&#39;/cardapio/item/1&#39;</span> <span class="p">)</span>
 </code></pre></div>
 <div class="highlight"><span class="filename">Retorno</span><pre><span></span><code><span class="p">{</span>
-    <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="s1">&#39;nome&#39;</span><span class="p">:</span> <span class="s1">&#39;Capuccino&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;categoria&#39;</span><span class="p">:</span> <span class="s1">&#39;Sucos&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;descricao&#39;</span><span class="p">:</span> <span class="s1">&#39;Expresso curto com leite&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;thumb&#39;</span><span class="p">:</span> <span class="s1">&#39;static/imagens/pequeno/427b834de1d5dd430439b13fdf8631606cbe1d42.jpg&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;normal&#39;</span><span class="p">:</span> <span class="s1">&#39;static/imagens/medio/427b834de1d5dd430439b13fdf8631606cbe1d42.jpg&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;total_favoritos&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;categoria&quot;</span><span class="p">:</span> <span class="s2">&quot;Café&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;descricao&quot;</span><span class="p">:</span> <span class="s2">&quot;Este café é das Arábias, muito bom você vai gostar&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;nome&quot;</span><span class="p">:</span> <span class="s2">&quot;Café das arábias loucas&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;normal&quot;</span><span class="p">:</span> <span class="s2">&quot;static/imagens/medio/89e276e6874e72f38902b82ceb6bc5e341650105.jpeg&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;thumb&quot;</span><span class="p">:</span> <span class="s2">&quot;static/imagens/pequeno/89e276e6874e72f38902b82ceb6bc5e341650105.jpeg&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;total_favoritos&quot;</span><span class="p">:</span> <span class="mi">0</span>
 <span class="p">}</span>
 </code></pre></div>
 <h3 id="patch">PATCH</h3>
-<p>Realiza a marcação/desmarcação de um item como favorito, é possível enviar um comentario sobre o item.</p>
+<p>Realiza a atualização da foto de um item se o item tem foto OK se não tem é preenchida com uma nova imagem. Necessita do token.</p>
+<div class="highlight"><span class="filename">Exemplo de envio</span><pre><span></span><code><span class="kn">from</span> <span class="nn">requests</span> <span class="kn">import</span> <span class="n">Session</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">URL</span> <span class="o">=</span> <span class="s1">&#39;http://localhost:8080&#39;</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">Session</span><span class="p">()</span>
+<span class="n">s</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;X-Api-Key&#39;</span><span class="p">:</span> <span class="s1">&#39;TOKEN_DE_AUTENTICACAO&#39;</span><span class="p">})</span>
+
+<span class="n">obj</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+   <span class="s1">&#39;id_identificador&#39;</span><span class="p">:</span> <span class="s1">&#39;68aeea48-add6-43c1-a4f9-1cbf40fc7344&#39;</span><span class="p">,</span>
+   <span class="s1">&#39;comentario&#39;</span><span class="p">:</span> <span class="s1">&#39;Muito bom, parabéns&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;arquivo.jpg&#39;</span><span class="p">)</span>
+
+<span class="c1"># Realizando o envio</span>
+<span class="n">s</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span> <span class="n">URL</span> <span class="o">+</span> <span class="s1">&#39;/cardapio/item/1&#39;</span><span class="p">,</span> <span class="n">files</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;arquivo&#39;</span><span class="p">:</span> <span class="n">file</span> <span class="p">}</span> <span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Retorno</span><pre><span></span><code><span class="p">{</span>
+    <span class="s2">&quot;categoria&quot;</span><span class="p">:</span> <span class="s2">&quot;Café&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;descricao&quot;</span><span class="p">:</span> <span class="s2">&quot;Este café é das Arábias, muito bom você vai gostar&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;nome&quot;</span><span class="p">:</span> <span class="s2">&quot;Café das arábias&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;normal&quot;</span><span class="p">:</span> <span class="s2">&quot;static/imagens/medio/55caf098c8969f84ca8b38987d7d2d96c94a754f.jpeg&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;thumb&quot;</span><span class="p">:</span> <span class="s2">&quot;static/imagens/pequeno/55caf098c8969f84ca8b38987d7d2d96c94a754f.jpeg&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;total_favoritos&quot;</span><span class="p">:</span> <span class="mi">0</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="delete">DELETE</h3>
+<p>Realiza a exclusão de um item, necessita de um token.</p>
+<div class="highlight"><span class="filename">Exemplo de envio</span><pre><span></span><code><span class="kn">from</span> <span class="nn">requests</span> <span class="kn">import</span> <span class="n">Session</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">URL</span> <span class="o">=</span> <span class="s1">&#39;http://localhost:8080&#39;</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">Session</span><span class="p">()</span>
+<span class="n">s</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;X-Api-Key&#39;</span><span class="p">:</span> <span class="s1">&#39;TOKEN_DE_AUTENTICACAO&#39;</span><span class="p">})</span>
+
+<span class="c1"># Realizando o envio</span>
+<span class="n">s</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span> <span class="n">URL</span> <span class="o">+</span> <span class="s1">&#39;/cardapio/item/1&#39;</span> <span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Retorno</span><pre><span></span><code><span class="p">{</span><span class="s1">&#39;sucesso&#39;</span><span class="p">:</span> <span class="s1">&#39;Item excluido com sucesso.&#39;</span><span class="p">}</span>
+</code></pre></div>
+<h2 id="cardapiocomentario">/cardapio/comentario</h2>
+<h3 id="post_1">POST</h3>
+<p>Esta rota realiza a inserção/atualização de um comentário sobre um determinado item.</p>
 <table>
 <thead>
 <tr>
@@ -739,7 +924,7 @@ junto ao <strong>X-Api-Key</strong>.</em></p>
 <tbody>
 <tr>
 <td>id</td>
-<td>O identificador do item a ser favoritado.</td>
+<td>O identificador do item que é desejado inserir o comentario.</td>
 <td>Integer</td>
 <td>1</td>
 </tr>
@@ -765,29 +950,31 @@ junto ao <strong>X-Api-Key</strong>.</em></p>
 <span class="n">s</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;X-Api-Key&#39;</span><span class="p">:</span> <span class="s1">&#39;TOKEN_DE_AUTENTICACAO&#39;</span><span class="p">})</span>
 
 <span class="n">obj</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-   <span class="s1">&#39;id_identificador&#39;</span><span class="p">:</span> <span class="s1">&#39;68aeea48-add6-43c1-a4f9-1cbf40fc7344&#39;</span><span class="p">,</span>
-   <span class="s1">&#39;comentario&#39;</span><span class="p">:</span> <span class="s1">&#39;Muito bom, parabéns&#39;</span><span class="p">,</span>
+    <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;id_identificador&quot;</span><span class="p">:</span> <span class="s2">&quot;d066aa7f-11bc-42d3-9c5f-47b09784eab6&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;comentario&quot;</span><span class="p">:</span> <span class="s2">&quot;Muito bom, estão de parabéns pelo trabalho&quot;</span>
 <span class="p">}</span>
 
 <span class="c1"># Realizando o envio</span>
-<span class="n">s</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span>
-    <span class="n">URL</span> <span class="o">+</span> <span class="s1">&#39;/cardapio&#39;</span><span class="p">,</span>
-    <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;dados&#39;</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="p">},</span>
-<span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">post</span><span class="p">(</span> <span class="n">URL</span> <span class="o">+</span> <span class="s1">&#39;/cardapio/comentario&#39;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">obj</span> <span class="p">)</span>
 </code></pre></div>
 <div class="highlight"><span class="filename">Retorno</span><pre><span></span><code><span class="p">{</span>
-    <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="s1">&#39;nome&#39;</span><span class="p">:</span> <span class="s1">&#39;Capuccino&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;categoria&#39;</span><span class="p">:</span> <span class="s1">&#39;Sucos&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;descricao&#39;</span><span class="p">:</span> <span class="s1">&#39;Expresso curto com leite&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;thumb&#39;</span><span class="p">:</span> <span class="s1">&#39;static/imagens/pequeno/427b834de1d5dd430439b13fdf8631606cbe1d42.jpg&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;normal&#39;</span><span class="p">:</span> <span class="s1">&#39;static/imagens/medio/427b834de1d5dd430439b13fdf8631606cbe1d42.jpg&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;total_favoritos&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;categoria&quot;</span><span class="p">:</span> <span class="s2">&quot;Café&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;descricao&quot;</span><span class="p">:</span> <span class="s2">&quot;Este café é das Arábias, muito bom você vai gostar&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s2">&quot;meu_favorito&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+        <span class="s2">&quot;nome&quot;</span><span class="p">:</span> <span class="s2">&quot;Café das arábias&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;normal&quot;</span><span class="p">:</span> <span class="s2">&quot;static/imagens/medio/55caf098c8969f84ca8b38987d7d2d96c94a754f.jpeg&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;thumb&quot;</span><span class="p">:</span> <span class="s2">&quot;static/imagens/pequeno/55caf098c8969f84ca8b38987d7d2d96c94a754f.jpeg&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;total_favoritos&quot;</span><span class="p">:</span> <span class="mi">1</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;sucesso&quot;</span><span class="p">:</span> <span class="s2">&quot;Comentário registrado com sucesso.&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
-<h3 id="delete">DELETE</h3>
-<p>Realiza a exclusão de um item.</p>
+<h2 id="cardapiofavorito">/cardapio/favorito</h2>
+<h3 id="patch_1">PATCH</h3>
+<p>Esta rota registra a curtida/descurtida do usuário ao sistema, se já teve uma curtida ele registra, se não teve ele não registra.</p>
 <table>
 <thead>
 <tr>
@@ -800,9 +987,15 @@ junto ao <strong>X-Api-Key</strong>.</em></p>
 <tbody>
 <tr>
 <td>id</td>
-<td>O identificador do item a ser excluido.</td>
+<td>O identificador do item que é desejado inserir o comentario.</td>
 <td>Integer</td>
 <td>1</td>
+</tr>
+<tr>
+<td>id_identificador</td>
+<td>Um identificador unico para o cliente. Isto irá permitir que o cliente marque/desmarque o item como favorito.</td>
+<td>String (uuidV4)</td>
+<td>'68aeea48-add6-43c1-a4f9-1cbf40fc7344'</td>
 </tr>
 </tbody>
 </table>
@@ -814,16 +1007,26 @@ junto ao <strong>X-Api-Key</strong>.</em></p>
 <span class="n">s</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;X-Api-Key&#39;</span><span class="p">:</span> <span class="s1">&#39;TOKEN_DE_AUTENTICACAO&#39;</span><span class="p">})</span>
 
 <span class="n">obj</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;id_identificador&quot;</span><span class="p">:</span> <span class="s2">&quot;d066aa7f-11bc-42d3-9c5f-47b09784eab6&quot;</span>
 <span class="p">}</span>
 
 <span class="c1"># Realizando o envio</span>
-<span class="n">s</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span>
-    <span class="n">URL</span> <span class="o">+</span> <span class="s1">&#39;/cardapio&#39;</span><span class="p">,</span>
-    <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;dados&#39;</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="p">},</span>
-<span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span> <span class="n">URL</span> <span class="o">+</span> <span class="s1">&#39;/cardapio/favorito&#39;</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">obj</span> <span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><span class="filename">Retorno</span><pre><span></span><code><span class="p">{</span><span class="s1">&#39;sucesso&#39;</span><span class="p">:</span> <span class="s1">&#39;Item excluido com sucesso.&#39;</span><span class="p">}</span>
+<div class="highlight"><span class="filename">Retorno</span><pre><span></span><code><span class="p">{</span>
+    <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;categoria&quot;</span><span class="p">:</span> <span class="s2">&quot;Café&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;descricao&quot;</span><span class="p">:</span> <span class="s2">&quot;Este café é das Arábias, muito bom você vai gostar&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s2">&quot;meu_favorito&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+        <span class="s2">&quot;nome&quot;</span><span class="p">:</span> <span class="s2">&quot;Café das arábias&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;normal&quot;</span><span class="p">:</span> <span class="s2">&quot;static/imagens/medio/55caf098c8969f84ca8b38987d7d2d96c94a754f.jpeg&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;thumb&quot;</span><span class="p">:</span> <span class="s2">&quot;static/imagens/pequeno/55caf098c8969f84ca8b38987d7d2d96c94a754f.jpeg&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;total_favoritos&quot;</span><span class="p">:</span> <span class="mi">2</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;sucesso&quot;</span><span class="p">:</span> <span class="s2">&quot;Item curtido com sucesso.&quot;</span>
+<span class="p">}</span>
 </code></pre></div>
 
 

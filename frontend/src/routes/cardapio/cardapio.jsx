@@ -8,6 +8,9 @@ import { AnimationNoData, CardItem } from "../../components";
 import Splash from "../splash";
 import { useHistory } from "react-router-dom";
 import { itemFavoriteToggle } from "../../redux/actions/items-actions";
+import { useLocalStorage } from "react-use";
+import { ID_IDENTIFICADOR } from "../../constants";
+import { toast } from "react-toastify";
 
 const selectMenus = (state) => state?.menu?.menus;
 const selectMenuSelected = (state) => state?.menu?.selectMenu;
@@ -18,6 +21,8 @@ const CARDAPIO_STRINGS = {
 };
 
 function Cardapio() {
+  const [valueKey, ,] = useLocalStorage(ID_IDENTIFICADOR);
+
   const dispatch = useDispatch();
   const history = useHistory();
   const menus = useSelector(selectMenus);
@@ -38,16 +43,22 @@ function Cardapio() {
     [dispatch]
   );
   //
-  // const onFavoriteItem = useCallback(
-  //   (id) => {
-  //     dispatch(itemFavoriteToggle(id));
-  //   },
-  //   [dispatch]
-  // );
+  const onFavoriteItem = useCallback(
+    (id) => {
+      if (!valueKey) {
+        toast.dark("Para curtir os produtos é necessário ativar os cookies", {
+          type: "info",
+        });
+      } else {
+        dispatch(itemFavoriteToggle(id, valueKey));
+      }
+    },
+    [dispatch, valueKey]
+  );
   //
   let itemsSelected = [];
   if (items && menus) {
-    const menuName = menus?.length > 0 ? menus[selectedMenu][1] : "";
+    const menuName = menus?.length > 0 ? menus[selectedMenu].descricao : "";
 
     itemsSelected = _.filter(items, (val) => val.categoria === menuName);
   }
@@ -71,8 +82,14 @@ function Cardapio() {
                     title={ele.nome}
                     description={ele.descricao}
                     image={ele.thumb}
-                    //isFav={ele.favoritado}
-                    //onClickFavorite={() => onFavoriteItem(ele.id)}
+                    isFav={ele.meu_favorito}
+                    onClickFavorite={() => onFavoriteItem(ele.id)}
+                    totalOfFav={ele.total_favoritos}
+                    onCreateComment={() => {}}
+                    labelComment="Comentar"
+                    labelThumbButton={
+                      ele.meu_favorito ? "Aprovado !" : "Curtir"
+                    }
                   />
                 </Box>
               </Grow>

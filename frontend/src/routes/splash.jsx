@@ -10,6 +10,9 @@ import Cardapio from "./cardapio/cardapio";
 import dataLottie from "../lotties/cafe.json";
 import Lottie from "react-lottie";
 import { red } from "@mui/material/colors";
+import { v4 as uuidv4 } from "uuid";
+import { useLocalStorage } from "react-use";
+import { ID_IDENTIFICADOR } from "../constants";
 
 //
 const selectMenus = (state) => state?.menu?.menus;
@@ -32,6 +35,13 @@ const defaultOptions = {
 
 //
 function Splash() {
+  // Armazena o identificador unico do usuario
+  const [valueKey, setValueKey] = useLocalStorage(ID_IDENTIFICADOR);
+  //
+  useEffect(() => {
+    if (!valueKey) setValueKey(uuidv4());
+  }, [valueKey, setValueKey]);
+
   const history = useHistory();
   const menus = useSelector(selectMenus);
   const items = useSelector(selectItems);
@@ -42,14 +52,17 @@ function Splash() {
   useEffect(() => {
     setTimeout(() => setIsShow(true), 1000);
   }, [setIsShow]);
+
   // Recupera os menus
   useEffect(() => {
     dispatch(menuInit());
   }, [dispatch]);
+
   // Recupera todos os itens
   useEffect(() => {
-    dispatch(itemsInit());
-  }, [dispatch]);
+    dispatch(itemsInit(valueKey));
+  }, [dispatch, valueKey]);
+
   // Verifica se os menus foram carregados
   useEffect(() => {
     if (menus && items) {
@@ -58,6 +71,7 @@ function Splash() {
       }, 5000);
     }
   }, [menus, items, history]);
+
   //
   return (
     <Background>

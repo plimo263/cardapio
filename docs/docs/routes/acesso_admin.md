@@ -27,13 +27,9 @@ s = Session()
 obj = {
    'email': 'beltrano@example.com', 'senha': 'minha_super_senha'
 }
-arquivo = open('imagem.jpg', 'rb)
 
 # Realizando o envio
-s.post(
-    URL + '/acesso_admin',
-    data={'dados': json.dumps(obj) }
-)
+s.post( URL + '/acesso_admin', json=obj )
 
 ```
 

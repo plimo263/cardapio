@@ -4,12 +4,12 @@ import ToastErro from "../../utils/toast-erro";
 export const MENU_INIT = "MENU_INIT";
 export const MENU_SELECTED = "MENU_SELECTED";
 
-const ROTAS = ["/cardapio"];
+const ROTAS = ["/cardapio/tipos"];
 
 export const menuInit = () => (dispatch) => {
   // Obtendo a meta do mes atual
   fetchRedux(
-    `${ROTAS[0]}?tipos=true`,
+    ROTAS[0],
     "GET",
     null,
     (resposta) => {

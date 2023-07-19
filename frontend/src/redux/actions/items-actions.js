@@ -4,14 +4,20 @@ import ToastErro from "../../utils/toast-erro";
 export const ITEMS_INIT = "ITEMS_INIT";
 export const ITEM_FAVORITE = "ITEM_FAVORITE";
 //
-const ROTAS = ["/cardapio"];
+const ROTAS = ["/cardapio/item", "/cardapio/favorito"];
 
-export const itemsInit = () => (dispatch) => {
-  // Obtendo a meta do mes atual
+export const itemsInit = (id_identificador) => (dispatch) => {
+  //
+  let formData;
+  if (id_identificador) {
+    formData = new URLSearchParams();
+    formData.append("id_identificador", id_identificador);
+  }
+
   fetchRedux(
-    `${ROTAS[0]}?categoria=todas`,
+    ROTAS[0],
     "GET",
-    null,
+    formData,
     (resposta) => {
       dispatch({
         type: ITEMS_INIT,
@@ -23,19 +29,15 @@ export const itemsInit = () => (dispatch) => {
   );
 };
 //
-export const itemFavoriteToggle = (id) => (dispatch) => {
-  // Obtendo a meta do mes atual
-  const formData = new FormData();
-  formData.append("dados", JSON.stringify({ id }));
-
+export const itemFavoriteToggle = (id, id_identificador) => (dispatch) => {
   fetchRedux(
-    ROTAS[0],
+    ROTAS[1],
     "PATCH",
-    formData,
+    { id, id_identificador },
     (resposta) => {
       dispatch({
         type: ITEM_FAVORITE,
-        data: resposta,
+        data: resposta.data,
       });
     },
     () => {},

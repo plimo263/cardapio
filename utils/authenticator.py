@@ -1,6 +1,7 @@
 
+from functools import wraps
 from flask import request
-import json
+from flask_smorest import abort
 from models import Usuario
 
 class Autenticator:
@@ -22,6 +23,7 @@ class Autenticator:
     
     def __call__(self, f):
         ''' Valida a autenticacao '''
+        @wraps(f)
         def funcao_decorada(*args, **kwargs):
             #
             headers = request.headers
@@ -30,12 +32,10 @@ class Autenticator:
             usuario = Usuario.query.filter_by(token=auth).first()
 
             if usuario is None:
-                return json.dumps({'erro': 'Sem permissão de acesso'})
+                return abort(400, message='Sem permissão de acesso')
             
             # Deu certo esta validado
-            return f(usuario)
-        # Necessario atualizar o nome da funcao_decorada pois 
-        # nao se pode usar o mesmo nome em uma funcao retornada
-        funcao_decorada.__name__ = f.__name__
+            return f(*args, **kwargs)
+        
 
         return funcao_decorada

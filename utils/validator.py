@@ -1,5 +1,6 @@
 
 from abc import ABC, abstractclassmethod
+import re
 import jsonschema
 import json
 
@@ -344,3 +345,18 @@ class Validator:
                     validator_error = [ v for v in self.__validate_fields if str(v) == campo ][0]
                     raise ValueError(validator_error.to_error_msg())
 
+def validar_senha(senha: str) -> bool:
+    ''' Verifica se a senha enviada tem ao menos 8 caracteres e 
+    contem uma letra maiuscula, uma minuscula, um caractere especial e um número 
+    Parameters:
+        senha: A senha a ser validada para atualizacao
+    Examples:
+        Utils.validar_senha('Fulanodetal')
+        False
+    
+    '''
+    # 1 Letra maiuscula, 1 minuscula, 1 numero e um caracter especial (minimo 8 caracteres)
+    regex_senha = r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!#%*?&])[A-Za-z\d@$!%#*?&]{8,}$"
+    if not re.compile(regex_senha).match(senha):
+        return False
+    return True

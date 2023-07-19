@@ -13,8 +13,8 @@ function BottomNavigationBar({ menus, selectedMenu, onChange }) {
       {menus?.map((ele, idx) => (
         <BottomNavigationAction
           key={idx}
-          label={ele[1]}
-          icon={<Icon icon={ele[0]} />}
+          label={ele.descricao}
+          icon={<Icon icon={ele.icone} />}
         />
       ))}
     </BottomNavigation>
