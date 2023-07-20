@@ -50,8 +50,8 @@ function Header() {
       position="sticky"
       sx={{
         top: 0,
-
-        background: "linear-gradient(180deg, #C31432 0%, #240B36 82.19%)",
+        //background: "linear-gradient(180deg, #C31432 0%, #240B36 82.19%)",
+        background: "#9F0606",
       }}
     >
       <Toolbar disableGutters>
