@@ -76,7 +76,7 @@ function Cardapio() {
           >
             {itemsSelected.map((ele) => (
               <Grow in key={ele.id}>
-                <Box>
+                <Box sx={{ p: 1 }}>
                   <CardItem
                     id={ele.id}
                     title={ele.nome}

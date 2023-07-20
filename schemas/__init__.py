@@ -4,3 +4,4 @@ from .item_schema import ItemSchema
 from .comentario_schema import ComentarioSchema
 from .favorito_schema import FavoritoSchema
 from .idcliente_schema import IdClienteSchema
+from .usuario_schema import UsuarioSchema

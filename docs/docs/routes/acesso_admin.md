@@ -38,3 +38,33 @@ s.post( URL + '/acesso_admin', json=obj )
     'token': 'dfadc855249b015fd2bb015c0b099b2189c58748'
 }
 ```
+
+## /usuario
+
+### GET
+
+Obtém detalhes de login do usuário (logicamente se o usuário estiver autenticado.)
+
+```{.py3 title='Exemplo de envio'}
+
+from requests import Session
+import json
+
+URL = 'http://localhost:8080'
+s = Session()
+s.headers.update({'X-Api-Key': 'TOKEN_DE_AUTENTICACAO'})
+
+# Realizando o envio
+s.get( URL + '/usuario' )
+
+```
+
+```{.json title='Retorno'}
+
+{
+  "data_acesso": "2023-07-20 11:08:16",
+  "email": "example@gmail.com",
+  "nome": "example@gmail.com"
+}
+
+```

@@ -31,7 +31,7 @@ function App() {
         <Router>
           <Routes />
         </Router>
-        <ToastContainer />
+        <ToastContainer position="bottom-center" />
       </Paper>
     </ThemeProvider>
   );

@@ -1,6 +1,6 @@
 
 from functools import wraps
-from flask import request
+from flask import request, session, redirect
 from flask_smorest import abort
 from models import Usuario
 
@@ -17,9 +17,10 @@ class Autenticator:
         ...
     
     '''
-    def __init__(self, rota = None, pagina_view = False):
+    def __init__(self, rota: str = None, pagina_view: bool = False, retornar_usuario: bool = False):
         self._rota = rota
         self._pagina_view = pagina_view
+        self._retornar_usuario = retornar_usuario
     
     def __call__(self, f):
         ''' Valida a autenticacao '''
@@ -27,13 +28,23 @@ class Autenticator:
         def funcao_decorada(*args, **kwargs):
             #
             headers = request.headers
-            auth = headers.get('X-Api-Key')
+            auth = None
+
+            if 'token' in session:
+                auth = session['token']
+
+            auth = headers.get('X-Api-Key') if 'X-Api-Key' in headers else auth
+            
             #
             usuario = Usuario.query.filter_by(token=auth).first()
 
-            if usuario is None:
+            if usuario is None and self._pagina_view:
+                return redirect('/acesso_login')
+            elif usuario is None:
                 return abort(400, message='Sem permissão de acesso')
             
+            if self._retornar_usuario:
+                kwargs['user'] = usuario
             # Deu certo esta validado
             return f(*args, **kwargs)
         

@@ -8,8 +8,11 @@ from extensions import db
 from routes import cardapio
 from routes import acesso_login
 from routes import cardapio_view
+from routes import acesso_login_view
 
 load_dotenv()
+
+CHAVE_RECAPTCHA = os.getenv('RECAPTCHA')
 
 def create_app():
     URI_DATABASE = os.getenv('URI_DATABASE') # Variavel de conexão ao banco
@@ -38,7 +41,7 @@ def create_app():
     api.register_blueprint(acesso_login)
 
     app.register_blueprint(cardapio_view)
-    #app.register_blueprint(login)
+    app.register_blueprint(acesso_login_view)
 
     app.secret_key = SECRET_KEY
 

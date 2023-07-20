@@ -317,6 +317,26 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#usuario" class="md-nav__link">
+    /usuario
+  </a>
+  
+    <nav class="md-nav" aria-label="/usuario">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get" class="md-nav__link">
+    GET
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -469,6 +489,26 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#usuario" class="md-nav__link">
+    /usuario
+  </a>
+  
+    <nav class="md-nav" aria-label="/usuario">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get" class="md-nav__link">
+    GET
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -530,6 +570,25 @@ para se obter o token de acesso.</p>
 </code></pre></div>
 <div class="highlight"><span class="filename">Retorno</span><pre><span></span><code><span class="p">{</span>
     <span class="s1">&#39;token&#39;</span><span class="p">:</span> <span class="s1">&#39;dfadc855249b015fd2bb015c0b099b2189c58748&#39;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="usuario">/usuario</h2>
+<h3 id="get">GET</h3>
+<p>Obtém detalhes de login do usuário (logicamente se o usuário estiver autenticado.)</p>
+<div class="highlight"><span class="filename">Exemplo de envio</span><pre><span></span><code><span class="kn">from</span> <span class="nn">requests</span> <span class="kn">import</span> <span class="n">Session</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">URL</span> <span class="o">=</span> <span class="s1">&#39;http://localhost:8080&#39;</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">Session</span><span class="p">()</span>
+<span class="n">s</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;X-Api-Key&#39;</span><span class="p">:</span> <span class="s1">&#39;TOKEN_DE_AUTENTICACAO&#39;</span><span class="p">})</span>
+
+<span class="c1"># Realizando o envio</span>
+<span class="n">s</span><span class="o">.</span><span class="n">get</span><span class="p">(</span> <span class="n">URL</span> <span class="o">+</span> <span class="s1">&#39;/usuario&#39;</span> <span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Retorno</span><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;data_acesso&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2023-07-20 11:08:16&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;example@gmail.com&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;nome&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;example@gmail.com&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
 

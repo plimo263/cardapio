@@ -9,6 +9,9 @@ msg_errors = {
     "senha": {
         "required": "Necessário informar a senha",
         "regex": "A senha deve ter 1 letra maiuscula, 1 minuscula e um caractere especial"
+    },
+    "captcha": {
+        "required": 'Recaptcha não enviado, impossível validar autenticação',
     }
 }
 
@@ -19,16 +22,18 @@ class AcessLoginSchema(Schema):
 
     })
     senha = fields.Str(
-        validate=validate.Regexp(
-            "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!#%*?&])[A-Za-z\d@$!%#*?&]{8,}$",
-            error=msg_errors["senha"]["regex"]
-        ),
+        # validate=validate.Regexp(
+        #     "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!#%*?&])[A-Za-z\d@$!%#*?&]{8,}$",
+        #     error=msg_errors["senha"]["regex"]
+        # ),
         required=True,
         error_messages={
             "required": msg_errors["senha"]["required"],
-            
         }
     )
+    captcha = fields.Str(required=True, error_messages={
+        'required': msg_errors['captcha']['required']
+    })
 
     token = fields.Str(dump_only=True)
 
