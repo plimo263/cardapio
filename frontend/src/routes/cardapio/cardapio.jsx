@@ -1,14 +1,14 @@
-import { Box, Container, Grow, Stack } from "@mui/material";
-import React, { useCallback, useEffect } from "react";
+import { Box, Container, Grow, Stack, useTheme } from "@mui/material";
+import React, { useCallback, useEffect, useMemo } from "react";
 import _ from "lodash";
 import BottomNavigationBar from "../../components/bottom-navigationbar";
 import { useDispatch, useSelector } from "react-redux";
 import { menuSelected } from "../../redux/actions/menu-actions";
-import { AnimationNoData, CardItem } from "../../components";
+import { AnimationHeart, AnimationNoData, CardItem } from "../../components";
 import Splash from "../splash";
 import { useHistory } from "react-router-dom";
 import { itemFavoriteToggle } from "../../redux/actions/items-actions";
-import { useLocalStorage } from "react-use";
+import { useLocalStorage, useToggle } from "react-use";
 import { ID_IDENTIFICADOR } from "../../constants";
 import { toast } from "react-toastify";
 
@@ -21,6 +21,8 @@ const CARDAPIO_STRINGS = {
 };
 
 function Cardapio() {
+  const isMobile = useTheme()?.isMobile;
+  const [animarCurtir, setAnimarCurtir] = useToggle();
   const [valueKey, ,] = useLocalStorage(ID_IDENTIFICADOR);
 
   const dispatch = useDispatch();
@@ -28,6 +30,13 @@ function Cardapio() {
   const menus = useSelector(selectMenus);
   const selectedMenu = useSelector(selectMenuSelected);
   const items = useSelector(selectItems);
+  //
+  let itemsSelected = useMemo(() => [], []);
+  if (items && menus) {
+    const menuName = menus?.length > 0 ? menus[selectedMenu].descricao : "";
+
+    itemsSelected = _.filter(items, (val) => val.categoria === menuName);
+  }
   //
   useEffect(() => {
     // Caso os itens não existam deve-se retornar a tela inicial
@@ -50,18 +59,19 @@ function Cardapio() {
           type: "info",
         });
       } else {
+        const item = _.filter(itemsSelected, (val) => val.id === id);
+        if (item.length > 0 && !item[0].meu_favorito) {
+          setAnimarCurtir();
+          setTimeout(() => {
+            setAnimarCurtir();
+          }, 1000);
+        }
+
         dispatch(itemFavoriteToggle(id, valueKey));
       }
     },
-    [dispatch, valueKey]
+    [dispatch, itemsSelected, setAnimarCurtir, valueKey]
   );
-  //
-  let itemsSelected = [];
-  if (items && menus) {
-    const menuName = menus?.length > 0 ? menus[selectedMenu].descricao : "";
-
-    itemsSelected = _.filter(items, (val) => val.categoria === menuName);
-  }
 
   return (
     <Stack>
@@ -96,6 +106,17 @@ function Cardapio() {
             ))}
           </Stack>
         )}
+        <Grow in={animarCurtir} unmountOnExit>
+          <Box
+            sx={{
+              position: "fixed",
+              top: isMobile ? "calc(50vh - 150px)" : "calc(50vh - 300px)",
+              left: isMobile ? "calc(50vw - 150px)" : "calc(50vw - 300px)",
+            }}
+          >
+            <AnimationHeart />
+          </Box>
+        </Grow>
       </Container>
       <BottomNavigationBar
         menus={menus}
