@@ -1,9 +1,11 @@
 import {
+  ButtonBase,
   Card,
   CardContent,
   CardHeader,
   CardMedia,
   IconButton,
+  Paper,
   Stack,
   Typography,
   useTheme,
@@ -132,6 +134,16 @@ const CardItemView = ({
     }
   }
 
+  const sxPaper = {
+    p: 0,
+    width: 40,
+    height: 40,
+    borderRadius: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  };
+
   return (
     <WrapperCard>
       <CardHeader
@@ -157,12 +169,25 @@ const CardItemView = ({
           <Typography sx={{ ...sxTextContent, flex: 1 }} variant="body2">
             {description}
           </Typography>
-          <IconButton onClick={onClickFavorite}>
-            <Icon
-              sx={{ color: "#9F0606", fontSize: 32 }}
-              icon={isFav ? "Favorite" : "FavoriteBorder"}
-            />
-          </IconButton>
+          <ButtonBase
+            sx={{
+              borderRadius: "100%",
+            }}
+            onClick={onClickFavorite}
+          >
+            <Paper
+              elevation={3}
+              sx={{
+                background: isFav ? "#f8eed6" : "#f8eed6", // 1=#f8eed6, 2=#dbc4a4
+                ...sxPaper,
+              }}
+            >
+              <Icon
+                sx={{ color: "#9F0606", fontSize: 28 }}
+                icon={isFav ? "Favorite" : "FavoriteBorder"}
+              />
+            </Paper>
+          </ButtonBase>
         </Stack>
         {totalOfFav > 0 && (
           <Typography
