@@ -76,7 +76,6 @@ function Splash() {
   return (
     <Background>
       <Stack justifyContent="center" alignItems="center">
-        <Logo isLogo2 />
         <Fade in={isShow}>
           <Typography
             sx={{ color: red[700], mt: 2, fontFamily: "Caveat" }}
@@ -87,9 +86,10 @@ function Splash() {
         </Fade>
         <Lottie
           options={defaultOptions}
-          height={isMobile ? 200 : 400}
-          width={isMobile ? 200 : 400}
+          height={isMobile ? 350 : 600}
+          width={isMobile ? 350 : 600}
         />
+        <Logo isLogo2 />
       </Stack>
     </Background>
   );

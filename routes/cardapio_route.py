@@ -3,7 +3,7 @@ from flask import request
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from sqlalchemy.exc import SQLAlchemyError, IntegrityError
-from extensions import path_dir_save_normal, path_dir_save_thumb
+from extensions import path_dir_save_normal, path_dir_save_thumb, path_dir_save_original
 from models import Categoria, Item, ImagemItem, Favorito, Comentario
 from schemas import (
     CategoriaSchema, ItemSchema, 
@@ -18,7 +18,8 @@ def delete_image_item(image_name: str):
     ''' Realiza a exclusão da imagem normal e thumb'''
     image_old_tumb = os.path.join(path_dir_save_thumb, image_name)
     image_old_normal = os.path.join(path_dir_save_normal, image_name)
-    for image_path in [image_old_tumb, image_old_normal]:
+    image_old_original = os.path.join(path_dir_save_original, image_name)
+    for image_path in [image_old_tumb, image_old_normal, image_old_original]:
         try:
             os.remove(image_path)
         except FileNotFoundError:
@@ -98,10 +99,12 @@ class CardapioUnique(MethodView):
         image_name = resp[1]
         
         # Salva a imagem em 2 formatos
+        path_original = os.path.join(path_dir_save_original, image_name)
         path_save = os.path.join(path_dir_save_normal, image_name)
         path_save_thumb = os.path.join(path_dir_save_thumb, image_name)
 
         # Salva nos dois novos caminhos
+        Imagens.resize_image(path_save, None, path_original)
         Imagens.resize_image(path_save, (1024,1024))
         Imagens.resize_image(path_save, (320,320), path_save_thumb)
         

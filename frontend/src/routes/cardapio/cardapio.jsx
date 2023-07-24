@@ -75,7 +75,7 @@ function Cardapio() {
 
   return (
     <Stack>
-      <Container disableGutters sx={{ px: 1, mb: 8 }}>
+      <Container disableGutters sx={{ px: 0, mb: 8 }}>
         {!itemsSelected || itemsSelected.length === 0 ? (
           <AnimationNoData title={CARDAPIO_STRINGS.titleNoData} />
         ) : (
@@ -92,6 +92,7 @@ function Cardapio() {
                     title={ele.nome}
                     description={ele.descricao}
                     image={ele.thumb}
+                    imageMax={ele.original}
                     isFav={ele.meu_favorito}
                     onClickFavorite={() => onFavoriteItem(ele.id)}
                     totalOfFav={ele.total_favoritos}

@@ -7,7 +7,7 @@ import {
   Stack,
   Toolbar,
   Typography,
-  useTheme,
+  //useTheme,
 } from "@mui/material";
 import React, { useCallback, useEffect, useState } from "react";
 import Logo from "./logo";
@@ -19,7 +19,7 @@ const menuStr = {
 };
 
 function Header() {
-  const isMobile = useTheme()?.isMobile;
+  //const isMobile = useTheme()?.isMobile;
   const [anchorEl, setAnchorEl] = useState();
   const { data, setFetch } = useFetch("/usuario", "GET");
   useEffect(() => {

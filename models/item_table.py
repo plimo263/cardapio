@@ -1,6 +1,6 @@
 import os
 from sqlalchemy import func
-from extensions import db, path_web_normal, path_web_thumb
+from extensions import db, path_web_normal, path_web_thumb, path_web_original
 from .imagem_item_table import ImagemItem
 from .favorito_table import Favorito
 
@@ -61,17 +61,24 @@ class Item(db.Model):
         
         #imagem_reg = ImagemItem.query.filter_by(id_item = self.id).first()
         total_de_favoritos = Favorito.total_of_fav(self.id)
-        
-        return {
+
+        obj = {
             'id': self.id, 
             'nome': self.nome, 
             'categoria': self.categoria, 
             'descricao': self.descricao,
             'thumb' : os.path.join(path_web_thumb, result[5] ) if result[5] else '',
             'normal' : os.path.join(path_web_normal, result[5] ) if result[5] else '',
+            'original': os.path.join(path_web_original, result[5]) if result[5] and os.path.exists(os.path.join(path_web_original, result[5]))  else '',
             'meu_favorito': True if result[4] else False,
             'total_favoritos': total_de_favoritos,
         }
+
+        # Caso não tenha o original mas tenha o normal, coloca-se a imagem do normal
+        if len(obj['normal']) > 0 and len(obj['original']) == 0:
+            obj['original'] = obj['normal']
+        
+        return obj
     
     def add(self):
         ''' Realiza a inserção do item no banco de dados '''

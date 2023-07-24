@@ -21,6 +21,7 @@ class ItemSchema(Schema):
     id = fields.Integer(dump_only=True)
     thumb = fields.Str(dump_only=True)
     normal = fields.Str(dump_only=True)
+    original = fields.Str(dump_only=True)
     total_favoritos = fields.Integer(dump_only=True)
     meu_favorito = fields.Bool(dump_only=True)
 

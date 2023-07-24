@@ -1,10 +1,13 @@
 import {
+  Box,
   ButtonBase,
   Card,
   CardContent,
   CardHeader,
   CardMedia,
+  Grow,
   IconButton,
+  Modal,
   Paper,
   Stack,
   Typography,
@@ -20,9 +23,11 @@ import {
   itemSendUpdate,
   itemSendUpdateImage,
 } from "../redux/actions/items-actions";
+import ZoomImage from "./zoom-image";
 
 import BackCardImg from "../images/fundo_card.jpeg";
 import BackCardImgMobile from "../images/fundo_card_mobile.jpeg";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const createPhrase = (total) => {
   return `${total} cliente${total < 2 ? "" : "s"} curti${
@@ -47,6 +52,7 @@ const sxTextFav = { fontWeight: 600, color: "#9F0606" };
 
 function CardItem({
   image,
+  imageMax,
   title,
   isEditor,
   category,
@@ -66,6 +72,7 @@ function CardItem({
     isFav,
     title,
     image,
+    imageMax,
     description,
     onClickFavorite,
     labelThumbButton,
@@ -118,12 +125,15 @@ const CardItemView = ({
   isMobile,
   title,
   image,
+  imageMax,
   description,
   onClickFavorite,
   labelThumbButton,
   onCreateComment,
   labelComment,
 }) => {
+  const history = useHistory();
+  const [viewImage, setViewImage] = useState(null);
   let phraseClientsOfFav = createPhrase(totalOfFav);
   if (isFav) {
     if (totalOfFav > 1) {
@@ -143,9 +153,68 @@ const CardItemView = ({
     alignItems: "center",
     justifyContent: "center",
   };
+  //
+  const onViewImage = useCallback(
+    (img) => {
+      setViewImage(img);
+      history.push();
+    },
+    [history, setViewImage]
+  );
+  //
+  const onCloseImage = useCallback(() => {
+    setViewImage(null);
+    history.goBack();
+  }, [history, setViewImage]);
 
   return (
     <WrapperCard>
+      <Modal open={Boolean(viewImage)} onClose={onCloseImage}>
+        <Box>
+          <Grow in unmountOnExit>
+            <ButtonBase
+              onClick={onCloseImage}
+              sx={{
+                zIndex: 10,
+                position: "fixed",
+                right: 8,
+                top: 8,
+              }}
+            >
+              <Paper
+                sx={{
+                  p: 0.5,
+                  borderRadius: "100%",
+                  background: ({ palette }) => palette.primary.main,
+                  color: "white",
+                }}
+              >
+                <Icon icon="Close" />
+              </Paper>
+            </ButtonBase>
+          </Grow>
+
+          <Box
+            sx={{
+              position: "fixed",
+              top: isMobile ? "25vh" : "5vh",
+              left: "0",
+              width: "100%",
+              height: "95vh",
+            }}
+          >
+            <ZoomImage
+              style={{
+                width: "100%",
+                objectFit: "contain",
+                maxHeight: "90vh",
+              }}
+              src={viewImage}
+              alt={title}
+            />
+          </Box>
+        </Box>
+      </Modal>
       <CardHeader
         sx={{
           backgroundImage: `url(${BackCardImgMobile})`,
@@ -155,6 +224,8 @@ const CardItemView = ({
         titleTypographyProps={sxTitleCard}
       />
       <CardMedia
+        sx={{ cursor: "pointer" }}
+        onClick={() => onViewImage(imageMax)}
         component="img"
         image={image}
         height={isMobile ? "auto" : heightImgDesk}

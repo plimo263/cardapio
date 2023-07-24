@@ -77,6 +77,7 @@ s.get( URL + '/cardapio/item')
         "nome": "Café das arábias",
         "normal": "static/imagens/medio/55caf098c8969f84ca8b38987d7d2d96c94a754f.jpeg",
         "thumb": "static/imagens/pequeno/55caf098c8969f84ca8b38987d7d2d96c94a754f.jpeg",
+        "original": "static/imagens/original/55caf098c8969f84ca8b38987d7d2d96c94a754f.jpeg",
         "total_favoritos": 2
     }
 ]
@@ -112,7 +113,7 @@ s.post( URL + '/cardapio/item', json=obj )
 
 ```
 
-```{.py3 title='Retorno'}
+```{.json title='Retorno'}
 {
 	"categoria": "Café",
 	"descricao": "Este café é das Arábias, muito bom você vai gostar",
@@ -120,6 +121,7 @@ s.post( URL + '/cardapio/item', json=obj )
 	"nome": "Café das arábias",
 	"normal": "",
 	"thumb": "",
+    "original": "",
 	"total_favoritos": 0
 }
 ```
@@ -156,7 +158,7 @@ s.put( URL + '/cardapio/item/1' )
 
 ```
 
-```{.py3 title='Retorno'}
+```{.json title='Retorno'}
 {
 	"categoria": "Café",
 	"descricao": "Este café é das Arábias, muito bom você vai gostar",
@@ -164,6 +166,7 @@ s.put( URL + '/cardapio/item/1' )
 	"nome": "Café das arábias loucas",
 	"normal": "static/imagens/medio/89e276e6874e72f38902b82ceb6bc5e341650105.jpeg",
 	"thumb": "static/imagens/pequeno/89e276e6874e72f38902b82ceb6bc5e341650105.jpeg",
+    "original": "static/imagens/original/55caf098c8969f84ca8b38987d7d2d96c94a754f.jpeg",
 	"total_favoritos": 0
 }
 ```
@@ -194,7 +197,7 @@ s.patch( URL + '/cardapio/item/1', files={'arquivo': file } )
 
 ```
 
-```{.py3 title='Retorno'}
+```{.json title='Retorno'}
 {
     "categoria": "Café",
     "descricao": "Este café é das Arábias, muito bom você vai gostar",
@@ -202,6 +205,7 @@ s.patch( URL + '/cardapio/item/1', files={'arquivo': file } )
     "nome": "Café das arábias",
     "normal": "static/imagens/medio/55caf098c8969f84ca8b38987d7d2d96c94a754f.jpeg",
     "thumb": "static/imagens/pequeno/55caf098c8969f84ca8b38987d7d2d96c94a754f.jpeg",
+    "original": "static/imagens/original/55caf098c8969f84ca8b38987d7d2d96c94a754f.jpeg",
     "total_favoritos": 0
 }
 ```
@@ -262,7 +266,7 @@ s.post( URL + '/cardapio/comentario', json=obj )
 
 ```
 
-```{.py3 title='Retorno'}
+```{.json title='Retorno'}
 {
     "data": {
         "categoria": "Café",
@@ -272,6 +276,7 @@ s.post( URL + '/cardapio/comentario', json=obj )
         "nome": "Café das arábias",
         "normal": "static/imagens/medio/55caf098c8969f84ca8b38987d7d2d96c94a754f.jpeg",
         "thumb": "static/imagens/pequeno/55caf098c8969f84ca8b38987d7d2d96c94a754f.jpeg",
+        "original": "static/imagens/original/55caf098c8969f84ca8b38987d7d2d96c94a754f.jpeg",
         "total_favoritos": 1
     },
     "sucesso": "Comentário registrado com sucesso."
@@ -308,7 +313,7 @@ s.patch( URL + '/cardapio/favorito', json=obj )
 
 ```
 
-```{.py3 title='Retorno'}
+```{.json title='Retorno'}
 {
     "data": {
         "categoria": "Café",
@@ -318,6 +323,7 @@ s.patch( URL + '/cardapio/favorito', json=obj )
         "nome": "Café das arábias",
         "normal": "static/imagens/medio/55caf098c8969f84ca8b38987d7d2d96c94a754f.jpeg",
         "thumb": "static/imagens/pequeno/55caf098c8969f84ca8b38987d7d2d96c94a754f.jpeg",
+        "original": "static/imagens/original/55caf098c8969f84ca8b38987d7d2d96c94a754f.jpeg",
         "total_favoritos": 2
     },
     "sucesso": "Item curtido com sucesso."
