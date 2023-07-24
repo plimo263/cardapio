@@ -49,13 +49,14 @@ class Imagens:
                     exf = orientation
             if not exf is None and not image._getexif() is None:
                 exif = dict(image._getexif().items())
-
-                if exif[exf] == 3:
-                    image = image.transpose(Image.ROTATE_180)
-                elif exif[exf] == 6:
-                    image = image.transpose(Image.ROTATE_270)
-                elif exif[exf] == 8:
-                    image = image.transpose(Image.ROTATE_90)
+                
+                if exf in exif:
+                    if exif[exf] == 3:
+                        image = image.transpose(Image.ROTATE_180)
+                    elif exif[exf] == 6:
+                        image = image.transpose(Image.ROTATE_270)
+                    elif exif[exf] == 8:
+                        image = image.transpose(Image.ROTATE_90)
 
             # Se tiver a tupla de dimensoes, defina e salve
             if not size is None:
@@ -68,7 +69,8 @@ class Imagens:
                 image.convert('RGB').save(filepath,  quality=100, subsampling=0)
             image.close()
             return True
-        except (AttributeError, KeyError, IndexError):
+        except Exception as err:
+            print(err)
             # cases: image don't have getexif
             print("ERRO FUNCAO DE ROTACIONAR IMAGEM")
             return False
