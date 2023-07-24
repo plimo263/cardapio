@@ -1,13 +1,10 @@
 import {
-  Box,
   ButtonBase,
   Card,
   CardContent,
   CardHeader,
   CardMedia,
-  Grow,
   IconButton,
-  Modal,
   Paper,
   Stack,
   Typography,
@@ -23,11 +20,11 @@ import {
   itemSendUpdate,
   itemSendUpdateImage,
 } from "../redux/actions/items-actions";
-import ZoomImage from "./zoom-image";
 
 import BackCardImg from "../images/fundo_card.jpeg";
 import BackCardImgMobile from "../images/fundo_card_mobile.jpeg";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory } from "react-router-dom";
+import ImageItemMax from "../routes/cardapio/image-item-max";
 
 const createPhrase = (total) => {
   return `${total} cliente${total < 2 ? "" : "s"} curti${
@@ -133,7 +130,7 @@ const CardItemView = ({
   labelComment,
 }) => {
   const history = useHistory();
-  const [viewImage, setViewImage] = useState(null);
+
   let phraseClientsOfFav = createPhrase(totalOfFav);
   if (isFav) {
     if (totalOfFav > 1) {
@@ -156,65 +153,13 @@ const CardItemView = ({
   //
   const onViewImage = useCallback(
     (img) => {
-      setViewImage(img);
-      history.push();
+      history.push(ImageItemMax.rota, img);
     },
-    [history, setViewImage]
+    [history]
   );
-  //
-  const onCloseImage = useCallback(() => {
-    setViewImage(null);
-    history.goBack();
-  }, [history, setViewImage]);
 
   return (
     <WrapperCard>
-      <Modal open={Boolean(viewImage)} onClose={onCloseImage}>
-        <Box>
-          <Grow in unmountOnExit>
-            <ButtonBase
-              onClick={onCloseImage}
-              sx={{
-                zIndex: 10,
-                position: "fixed",
-                right: 8,
-                top: 8,
-              }}
-            >
-              <Paper
-                sx={{
-                  p: 0.5,
-                  borderRadius: "100%",
-                  background: ({ palette }) => palette.primary.main,
-                  color: "white",
-                }}
-              >
-                <Icon icon="Close" />
-              </Paper>
-            </ButtonBase>
-          </Grow>
-
-          <Box
-            sx={{
-              position: "fixed",
-              top: isMobile ? "25vh" : "5vh",
-              left: "0",
-              width: "100%",
-              height: "95vh",
-            }}
-          >
-            <ZoomImage
-              style={{
-                width: "100%",
-                objectFit: "contain",
-                maxHeight: "90vh",
-              }}
-              src={viewImage}
-              alt={title}
-            />
-          </Box>
-        </Box>
-      </Modal>
       <CardHeader
         sx={{
           backgroundImage: `url(${BackCardImgMobile})`,

@@ -4,6 +4,7 @@ import Cardapio from "./cardapio/cardapio";
 import AdminAcesso from "./admin/admin_acesso";
 import { Header } from "../components";
 import ManutencaoItens from "./admin/manutencao_itens";
+import ImageItemMax from "./cardapio/image-item-max";
 
 // Todas as rotas do aplicativo
 export const ROTAS = [
@@ -11,6 +12,7 @@ export const ROTAS = [
   [Cardapio.rota, Cardapio],
   [AdminAcesso.rota, AdminAcesso],
   [ManutencaoItens.rota, ManutencaoItens],
+  [ImageItemMax.rota, ImageItemMax],
 ];
 
 export default function Routes() {
