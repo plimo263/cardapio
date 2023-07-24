@@ -169,8 +169,7 @@ const CardItemView = ({
   //
   const onCloseImage = useCallback(() => {
     setViewImage(null);
-    history.goBack();
-  }, [history, setViewImage]);
+  }, [setViewImage]);
 
   return (
     <WrapperCard>
