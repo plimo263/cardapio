@@ -108,9 +108,11 @@ const WrapperCard = ({ children }) => {
       elevation={3}
       sx={{
         m: 1,
-        height: !isMobile && "100%",
+        //height: !isMobile && "100%",
+        minHeight: "100%",
         overflowY: "hidden",
-        width: isMobile ? "calc(100%-8px)" : "324px",
+        //width: isMobile ? "calc(100%-8px)" : "324px",
+        minWidth: isMobile ? "80vw" : "324px",
         backgroundImage: !isMobile && `url(${BackCardImg})`,
         backgroundPositionY: "bottom",
       }}
@@ -236,8 +238,9 @@ const CardItemView = ({
       />
       <CardContent
         sx={{
+          height: "100%",
           backgroundImage: isMobile && `url(${BackCardImgMobile})`,
-          backgroundPositionY: isMobile && "bottom",
+          backgroundPositionY: isMobile && "165%",
         }}
       >
         <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>

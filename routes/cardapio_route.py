@@ -34,7 +34,7 @@ class Cardapio(MethodView):
     @cardapio.arguments(IdClienteSchema, location="query")
     @cardapio.response(200, ItemSchema(many=True))
     def get(self, item_data):
-        ''' Retorna todos os itens de todas as categorias '''
+        ''' Retorna todos os itens de todas as categorias. Caso enviado um id_identificador então verifica os itens que ele curtiu '''
         id_identificador = None
         if 'id_identificador' in item_data:
             id_identificador = item_data['id_identificador'].bytes
@@ -49,6 +49,7 @@ class Cardapio(MethodView):
     @cardapio.response(200, ItemSchema)
     @Autenticator()
     def post(self, item_data):
+        ''' Realiza o registro de um novo item no cardapio, recebendo nome, descricao e categoria.'''
         data = item_data
 
         if not Categoria.query.filter_by(descricao = data['categoria']).first():
@@ -126,6 +127,7 @@ class CardapioUnique(MethodView):
 
     @Autenticator()
     def delete(self, id_item):
+        ''' Realiza a exclusão de um item no cardapio. Necessário ser um usuário autenticado.'''
         item: Item = Item.query.get_or_404(id_item)
         # Recupera o nome da imagem
         image_reg: ImagemItem = ImagemItem.query.filter_by(id_item = id_item).first()
@@ -153,6 +155,7 @@ class CardapioTipos(MethodView):
 
     @cardapio.response(200, CategoriaSchema(many=True))
     def get(self):
+        ''' Recupera a lista dos tipos de produtos do cardápio, esta lista contém o icone e a descrição.'''
         return [
             {
                 "descricao": item.descricao,
@@ -217,7 +220,7 @@ class CardapioFavorito(MethodView):
 
     @cardapio.arguments(FavoritoSchema)
     def patch(self, item_data):
-        ''' Realiza a curtida do produto '''
+        ''' Realiza a curtida do produto por parte do cliente. '''
 
         item = Item.query.get_or_404(item_data['id'])
         

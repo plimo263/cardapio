@@ -21,6 +21,7 @@ class AcessoAdmin(MethodView):
     @acesso_login.arguments(AcessLoginSchema)
     @acesso_login.response(200, schema=AcessLoginSchema)
     def post(self, data_login):
+        ''' Autentica o usuário responsável por atualizar as informações, descrições e modelos dos itens do cardápio.'''
 
         URL = 'https://www.google.com/recaptcha/api/siteverify'
         resposta = requests.post(URL, data = { 'secret': CHAVE_RECAPTCHA, 'response': data_login['captcha'] }).json()
@@ -54,5 +55,6 @@ class UsuarioDadosRest(MethodView):
     @Autenticator(retornar_usuario=True)
     @acesso_login.response(200, UsuarioSchema)
     def get(self, **kwargs):
+        ''' Recupera dados informativos do usuário autenticado no momento.'''
         return kwargs['user']
 

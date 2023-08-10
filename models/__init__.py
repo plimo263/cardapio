@@ -4,3 +4,4 @@ from .imagem_item_table import ImagemItem
 from .item_table import Item
 from .usuario_table import Usuario
 from .categoria_table import Categoria
+from .rede_social import RedeSocial

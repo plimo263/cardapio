@@ -17,7 +17,9 @@ function App() {
   const isMobile = useMediaQuery(useTheme()?.breakpoints?.down("md"));
   const theme = createTheme({
     isMobile,
+
     palette: {
+      primaryColor: "#9F0606",
       mode: "light",
       primary: red,
     },

@@ -13,6 +13,7 @@ import { red } from "@mui/material/colors";
 import { v4 as uuidv4 } from "uuid";
 import { useLocalStorage } from "react-use";
 import { ID_IDENTIFICADOR } from "../constants";
+import { redeSocialInit } from "../redux/actions/rede-social-actions";
 
 //
 const selectMenus = (state) => state?.menu?.menus;
@@ -62,6 +63,11 @@ function Splash() {
   useEffect(() => {
     dispatch(itemsInit(valueKey));
   }, [dispatch, valueKey]);
+
+  // Recupera as redes sociais do Rodape
+  useEffect(() => {
+    dispatch(redeSocialInit());
+  }, [dispatch]);
 
   // Verifica se os menus foram carregados
   useEffect(() => {

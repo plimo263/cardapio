@@ -9,6 +9,7 @@ from routes import cardapio
 from routes import acesso_login
 from routes import cardapio_view
 from routes import acesso_login_view
+from routes import rede_social
 
 load_dotenv()
 
@@ -39,6 +40,7 @@ def create_app():
 
     api.register_blueprint(cardapio)
     api.register_blueprint(acesso_login)
+    api.register_blueprint(rede_social)
 
     app.register_blueprint(cardapio_view)
     app.register_blueprint(acesso_login_view)

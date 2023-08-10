@@ -1,19 +1,29 @@
-import { Box, Container, Grow, Stack, useTheme } from "@mui/material";
+import {
+  Box,
+  Container,
+  Grow,
+  Stack,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import React, { useCallback, useEffect, useMemo } from "react";
 import _ from "lodash";
-import BottomNavigationBar from "../../components/bottom-navigationbar";
 import { useDispatch, useSelector } from "react-redux";
-import { menuSelected } from "../../redux/actions/menu-actions";
-import { AnimationHeart, AnimationNoData, CardItem } from "../../components";
+import {
+  AnimationHeart,
+  AnimationNoData,
+  CardItem,
+  Icon,
+} from "../../components";
 import Splash from "../splash";
 import { useHistory } from "react-router-dom";
 import { itemFavoriteToggle } from "../../redux/actions/items-actions";
 import { useLocalStorage, useToggle } from "react-use";
 import { ID_IDENTIFICADOR } from "../../constants";
 import { toast } from "react-toastify";
+import Footer from "../../components/Footer";
 
 const selectMenus = (state) => state?.menu?.menus;
-const selectMenuSelected = (state) => state?.menu?.selectMenu;
 const selectItems = (state) => state?.items;
 
 const CARDAPIO_STRINGS = {
@@ -28,14 +38,13 @@ function Cardapio() {
   const dispatch = useDispatch();
   const history = useHistory();
   const menus = useSelector(selectMenus);
-  const selectedMenu = useSelector(selectMenuSelected);
+
   const items = useSelector(selectItems);
+
   //
   let itemsSelected = useMemo(() => [], []);
   if (items && menus) {
-    const menuName = menus?.length > 0 ? menus[selectedMenu].descricao : "";
-
-    itemsSelected = _.filter(items, (val) => val.categoria === menuName);
+    itemsSelected = items;
   }
   //
   useEffect(() => {
@@ -44,13 +53,6 @@ function Cardapio() {
       history.replace(Splash.rota);
     }
   }, [history, items]);
-  //
-  const onChangeMenu = useCallback(
-    (value) => {
-      dispatch(menuSelected(value));
-    },
-    [dispatch]
-  );
   //
   const onFavoriteItem = useCallback(
     (id) => {
@@ -75,37 +77,22 @@ function Cardapio() {
 
   return (
     <Stack>
-      <Container disableGutters sx={{ px: 0, mb: 8 }}>
+      <Container disableGutters sx={{ px: 0, mb: 8 }} maxWidth={false}>
         {!itemsSelected || itemsSelected.length === 0 ? (
           <AnimationNoData title={CARDAPIO_STRINGS.titleNoData} />
         ) : (
-          <Stack
-            direction={{ sm: "column", md: "row" }}
-            sx={{ width: "100%" }}
-            flexWrap={{ sm: "nowrap", md: "wrap" }}
-          >
-            {itemsSelected.map((ele) => (
-              <Grow in key={ele.id}>
-                <Box sx={{ p: 1 }}>
-                  <CardItem
-                    id={ele.id}
-                    title={ele.nome}
-                    description={ele.descricao}
-                    image={ele.thumb}
-                    imageMax={ele.original}
-                    isFav={ele.meu_favorito}
-                    onClickFavorite={() => onFavoriteItem(ele.id)}
-                    totalOfFav={ele.total_favoritos}
-                    onCreateComment={() => {}}
-                    labelComment="Comentar"
-                    labelThumbButton={
-                      ele.meu_favorito ? "Aprovado !" : "Curtir"
-                    }
-                  />
-                </Box>
-              </Grow>
-            ))}
-          </Stack>
+          menus.map((menu) => (
+            <Categoria
+              key={menu.icone}
+              descricao={menu.descricao}
+              icone={menu.icone}
+              itens={_.filter(
+                itemsSelected,
+                (val) => val.categoria === menu.descricao
+              )}
+              onFavoriteItem={onFavoriteItem}
+            />
+          ))
         )}
         <Grow in={animarCurtir} unmountOnExit>
           <Box
@@ -119,14 +106,54 @@ function Cardapio() {
           </Box>
         </Grow>
       </Container>
-      <BottomNavigationBar
-        menus={menus}
-        selectedMenu={selectedMenu}
-        onChange={onChangeMenu}
-      />
+      <Footer />
     </Stack>
   );
 }
+//
+const Categoria = ({ descricao, icone, itens, onFavoriteItem }) => {
+  return (
+    <Stack gap={1}>
+      <Stack direction="row" gap={1} alignItems="center">
+        <Typography
+          variant="h3"
+          sx={{ color: "#9F0606", fontFamily: "Caveat" }}
+        >
+          {descricao}
+        </Typography>
+        <Icon
+          icon={icone}
+          sx={{
+            color: "#9F0606",
+            fontSize: ({ typography }) => typography.h3.fontSize,
+          }}
+        />
+      </Stack>
+
+      <Stack
+        direction="row"
+        alignItems="stretch"
+        sx={{ py: 1, width: "100vw", overflow: "auto" }}
+      >
+        {itens.map((ele) => (
+          <CardItem
+            id={ele.id}
+            title={ele.nome}
+            description={ele.descricao}
+            image={ele.thumb}
+            imageMax={ele.original}
+            isFav={ele.meu_favorito}
+            onClickFavorite={() => onFavoriteItem(ele.id)}
+            totalOfFav={ele.total_favoritos}
+            onCreateComment={() => {}}
+            labelComment="Comentar"
+            labelThumbButton={ele.meu_favorito ? "Aprovado !" : "Curtir"}
+          />
+        ))}
+      </Stack>
+    </Stack>
+  );
+};
 
 Cardapio.rota = "/cardapio";
 
