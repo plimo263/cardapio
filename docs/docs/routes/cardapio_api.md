@@ -87,11 +87,11 @@ s.get( URL + '/cardapio/item')
 
 Cria um novo item no cardapio, esta API necessita de um token de autenticação.
 
-| NOME      | DESCRICAO                                                                                          | TIPO   | VALOR DE EXEMPLO                     |
-| --------- | -------------------------------------------------------------------------------------------------- | ------ | ------------------------------------ |
-| nome      | Nome do item a ser inserido                                                                        | String | 'Capuccino'                          |
-| categoria | Define a categoria em que o item irá participar, é aceita no momento uma das categorias do exemplo | String | 'Café', 'Chá', 'Sucos', 'Alcoólicos' |
-| descricao | Necessario para descrever detalhes do item.                                                        | String | 'Expresso curto'                     |
+| NOME      | DESCRICAO                                                                                          | TIPO   | VALOR DE EXEMPLO                       |
+| --------- | -------------------------------------------------------------------------------------------------- | ------ | -------------------------------------- |
+| nome      | Nome do item a ser inserido                                                                        | String | 'Capuccino'                            |
+| categoria | Define a categoria em que o item irá participar, é aceita no momento uma das categorias do exemplo | String | 'Cafés', 'Chás', 'Sucos', 'Alcoólicos' |
+| descricao | Necessario para descrever detalhes do item.                                                        | String | 'Expresso curto'                       |
 
 ```{.py3 title='Exemplo de envio'}
 
@@ -132,11 +132,11 @@ s.post( URL + '/cardapio/item', json=obj )
 
 Realiza a atualização de um item, descrição nome e categoria são alterados neste envio, necessita de um token de usuário.
 
-| NOME      | DESCRICAO                                                                                          | TIPO   | VALOR DE EXEMPLO                     |
-| --------- | -------------------------------------------------------------------------------------------------- | ------ | ------------------------------------ |
-| nome      | Novo nome do item a ser atualizado                                                                 | String | 'Capuccino'                          |
-| categoria | Define a categoria em que o item irá participar, é aceita no momento uma das categorias do exemplo | String | 'Café', 'Chá', 'Sucos', 'Alcoólicos' |
-| descricao | Necessario para descrever detalhes do item.                                                        | String | 'Expresso curto'                     |
+| NOME      | DESCRICAO                                                                                          | TIPO   | VALOR DE EXEMPLO                       |
+| --------- | -------------------------------------------------------------------------------------------------- | ------ | -------------------------------------- |
+| nome      | Novo nome do item a ser atualizado                                                                 | String | 'Capuccino'                            |
+| categoria | Define a categoria em que o item irá participar, é aceita no momento uma das categorias do exemplo | String | 'Cafés', 'Chás', 'Sucos', 'Alcoólicos' |
+| descricao | Necessario para descrever detalhes do item.                                                        | String | 'Expresso curto'                       |
 
 ```{.py3 title='Exemplo de envio'}
 

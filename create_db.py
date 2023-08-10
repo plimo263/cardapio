@@ -21,9 +21,9 @@ regex_email = re.compile('([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|
 def criar_categorias():
     ''' Criar as categorias padrao '''
     categorias = [
-        ['FreeBreakfast', 'Café'],
+        ['FreeBreakfast', 'Cafés'],
         ['Fastfood', 'Sucos'],
-        ['EmojiFoodBeverage', 'Chá'],
+        ['EmojiFoodBeverage', 'Chás'],
         ['WineBar', 'Alcoólicos']
     ]
     for icone, descricao in categorias:
