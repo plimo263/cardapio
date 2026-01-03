@@ -26,3 +26,7 @@ def admin_page():
 @bp.route('/')
 def home_page():
     return render_template("index.html")
+
+@bp.route('/cardapio')
+def cardapio_page():
+    return render_template("index.html")
