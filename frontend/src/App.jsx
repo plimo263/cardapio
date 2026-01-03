@@ -16,6 +16,7 @@ function App() {
         <Paper elevation={0} sx={{ minHeight: "100vh", width: "100%" }}>
           <Routes>
             <Route path="/" element={<Cardapio />} />
+            <Route path="/cardapio" element={<Cardapio />} />
             <Route path="/admin" element={<AdminLogin />} />
             <Route
               path="/usuarios"
