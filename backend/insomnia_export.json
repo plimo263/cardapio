@@ -1,0 +1,397 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2026-01-01T00:00:00Z",
+  "__export_source": "assistant",
+  "resources": [
+    {
+      "_id": "wrk_cardapio",
+      "_type": "workspace",
+      "name": "Cardapio Backend",
+      "description": "",
+      "scope": "collection"
+    },
+    {
+      "_id": "env_cardapio",
+      "_type": "environment",
+      "parentId": "wrk_cardapio",
+      "name": "Base Environment",
+      "data": {
+        "base_url": "http://localhost:5000",
+        "API_KEY": "b9ddb3c7-3185-4475-897a-22b4b92059a6",
+        "BEARER_TOKEN": ""
+      }
+    },
+    {
+      "_id": "fld_cat",
+      "_type": "request_group",
+      "parentId": "wrk_cardapio",
+      "name": "Categorias"
+    },
+    {
+      "_id": "req_cat_list",
+      "_type": "request",
+      "parentId": "fld_cat",
+      "name": "GET /categorias",
+      "method": "GET",
+      "url": "{{ base_url }}/categorias",
+      "body": {},
+      "headers": []
+    },
+    {
+      "_id": "req_cat_post",
+      "_type": "request",
+      "parentId": "fld_cat",
+      "name": "POST /categorias",
+      "method": "POST",
+      "url": "{{ base_url }}/categorias",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"Cervejas\"\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "X-Api-Key",
+          "value": "{{ API_KEY }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_cat_get",
+      "_type": "request",
+      "parentId": "fld_cat",
+      "name": "GET /categorias/:id",
+      "method": "GET",
+      "url": "{{ base_url }}/categorias/1",
+      "body": {},
+      "headers": []
+    },
+    {
+      "_id": "req_cat_put",
+      "_type": "request",
+      "parentId": "fld_cat",
+      "name": "PUT /categorias/:id",
+      "method": "PUT",
+      "url": "{{ base_url }}/categorias/1",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"Novas Categorias\",\n  \"ativo\": true\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "X-Api-Key",
+          "value": "{{ API_KEY }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_cat_delete",
+      "_type": "request",
+      "parentId": "fld_cat",
+      "name": "DELETE /categorias/:id",
+      "method": "DELETE",
+      "url": "{{ base_url }}/categorias/1",
+      "body": {},
+      "headers": [
+        {
+          "name": "X-Api-Key",
+          "value": "{{ API_KEY }}"
+        }
+      ]
+    },
+    {
+      "_id": "fld_beb",
+      "_type": "request_group",
+      "parentId": "wrk_cardapio",
+      "name": "Bebidas"
+    },
+    {
+      "_id": "req_beb_list",
+      "_type": "request",
+      "parentId": "fld_beb",
+      "name": "GET /bebidas",
+      "method": "GET",
+      "url": "{{ base_url }}/bebidas",
+      "body": {},
+      "headers": []
+    },
+    {
+      "_id": "req_beb_post",
+      "_type": "request",
+      "parentId": "fld_beb",
+      "name": "POST /bebidas",
+      "method": "POST",
+      "url": "{{ base_url }}/bebidas",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"IPA\",\n  \"descricao\": \"Cerveja artesanal\",\n  \"preco\": \"12.50\",\n  \"imagem_url\": \"http://exemplo.com/ipa.jpg\",\n  \"categoria_id\": 1\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "X-Api-Key",
+          "value": "{{ API_KEY }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_beb_get",
+      "_type": "request",
+      "parentId": "fld_beb",
+      "name": "GET /bebidas/:id",
+      "method": "GET",
+      "url": "{{ base_url }}/bebidas/1",
+      "body": {},
+      "headers": []
+    },
+    {
+      "_id": "req_beb_put",
+      "_type": "request",
+      "parentId": "fld_beb",
+      "name": "PUT /bebidas/:id",
+      "method": "PUT",
+      "url": "{{ base_url }}/bebidas/1",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"nome\": \"IPA Atualizada\",\n  \"descricao\": \"Descrição atualizada\",\n  \"preco\": \"13.00\",\n  \"imagem_url\": \"http://exemplo.com/ipa2.jpg\",\n  \"categoria_id\": 1\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "X-Api-Key",
+          "value": "{{ API_KEY }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_beb_delete",
+      "_type": "request",
+      "parentId": "fld_beb",
+      "name": "DELETE /bebidas/:id",
+      "method": "DELETE",
+      "url": "{{ base_url }}/bebidas/1",
+      "body": {},
+      "headers": [
+        {
+          "name": "X-Api-Key",
+          "value": "{{ API_KEY }}"
+        }
+      ]
+    }
+    ,
+    {
+      "_id": "fld_img",
+      "_type": "request_group",
+      "parentId": "wrk_cardapio",
+      "name": "Imagens"
+    },
+    {
+      "_id": "req_img_post",
+      "_type": "request",
+      "parentId": "fld_img",
+      "name": "POST /images (upload)",
+      "method": "POST",
+      "url": "{{ base_url }}/images",
+      "body": {
+        "mimeType": "multipart/form-data",
+        "params": [
+          {
+            "name": "file",
+            "type": "file",
+            "fileName": "/caminho/para/imagem.jpg"
+          }
+        ]
+      },
+      "headers": [
+        {
+          "name": "X-Api-Key",
+          "value": "{{ API_KEY }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_img_get_mobile",
+      "_type": "request",
+      "parentId": "fld_img",
+      "name": "GET /images/:id?size=mobile",
+      "method": "GET",
+      "url": "{{ base_url }}/images/1?size=mobile",
+      "body": {},
+      "headers": []
+    },
+    {
+      "_id": "req_img_get_thumb",
+      "_type": "request",
+      "parentId": "fld_img",
+      "name": "GET /images/:id?size=thumb",
+      "method": "GET",
+      "url": "{{ base_url }}/images/1?size=thumb",
+      "body": {},
+      "headers": []
+    }
+    ,
+    {
+      "_id": "fld_auth",
+      "_type": "request_group",
+      "parentId": "wrk_cardapio",
+      "name": "Auth"
+    },
+    {
+      "_id": "req_auth_login",
+      "_type": "request",
+      "parentId": "fld_auth",
+      "name": "POST /auth/login",
+      "method": "POST",
+      "url": "{{ base_url }}/auth/login",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"username\": \"admin\",\n  \"password\": \"senha123\"\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ]
+    },
+    {
+      "_id": "req_auth_logout",
+      "_type": "request",
+      "parentId": "fld_auth",
+      "name": "POST /auth/logout",
+      "method": "POST",
+      "url": "{{ base_url }}/auth/logout",
+      "body": {},
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ BEARER_TOKEN }}"
+        }
+      ]
+    },
+    {
+      "_id": "fld_users",
+      "_type": "request_group",
+      "parentId": "wrk_cardapio",
+      "name": "Users"
+    },
+    {
+      "_id": "req_users_list",
+      "_type": "request",
+      "parentId": "fld_users",
+      "name": "GET /users",
+      "method": "GET",
+      "url": "{{ base_url }}/users",
+      "body": {},
+      "headers": [
+        {
+          "name": "X-Api-Key",
+          "value": "{{ API_KEY }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_users_post",
+      "_type": "request",
+      "parentId": "fld_users",
+      "name": "POST /users",
+      "method": "POST",
+      "url": "{{ base_url }}/users",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"username\": \"editor\",\n  \"password\": \"senha123\",\n  \"is_admin\": false\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "X-Api-Key",
+          "value": "{{ API_KEY }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_user_get",
+      "_type": "request",
+      "parentId": "fld_users",
+      "name": "GET /users/:id",
+      "method": "GET",
+      "url": "{{ base_url }}/users/1",
+      "body": {},
+      "headers": [
+        {
+          "name": "X-Api-Key",
+          "value": "{{ API_KEY }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_user_put",
+      "_type": "request",
+      "parentId": "fld_users",
+      "name": "PUT /users/:id",
+      "method": "PUT",
+      "url": "{{ base_url }}/users/1",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"username\": \"editor2\",\n  \"password\": \"novaSenha\"\n}"
+      },
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "X-Api-Key",
+          "value": "{{ API_KEY }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_user_delete",
+      "_type": "request",
+      "parentId": "fld_users",
+      "name": "DELETE /users/:id",
+      "method": "DELETE",
+      "url": "{{ base_url }}/users/1",
+      "body": {},
+      "headers": [
+        {
+          "name": "X-Api-Key",
+          "value": "{{ API_KEY }}"
+        }
+      ]
+    },
+    {
+      "_id": "req_user_me",
+      "_type": "request",
+      "parentId": "fld_users",
+      "name": "GET /users/me",
+      "method": "GET",
+      "url": "{{ base_url }}/users/me",
+      "body": {},
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Bearer {{ BEARER_TOKEN }}"
+        }
+      ]
+    }
+  ]
+}
